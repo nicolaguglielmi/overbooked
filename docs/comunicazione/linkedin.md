@@ -16,7 +16,7 @@ Sei eventi, dal meetup del giovedì all'hackathon notturno fino al DevFest, e og
 
 Gemini è un extra, spento di default. Chi vuole lo attiva con la propria chiave, che resta nel suo browser e va solo a Google, e il gioco scrive carte, chat e il giornale locale per la sua community e la sua città.
 
-Se non organizzi eventi, è un assaggio di quello che c'è dietro ogni talk che parte in orario. Se li organizzi, giocalo con il tuo team, porta il chapter nella Chapter Cup e raccontami la tua crisi peggiore: diventa una carta del gioco.
+Se non organizzi eventi, è un assaggio di quello che c'è dietro ogni talk che parte in orario. Se li organizzi, giocalo con il tuo team e raccontami la tua crisi peggiore: diventa una carta del gioco.
 
 Si gioca dal browser, gratis, in cinque lingue: https://overbooked.web.app/?s=li
 
@@ -56,7 +56,7 @@ Six events, from a Thursday meetup to a night hackathon to the DevFest, and ever
 
 Gemini is an extra, off by default. Turn it on with your own key, which stays in your browser and goes only to Google, and the game writes cards, chats and the local newspaper for your community and your city.
 
-If you don't run events, it's a glimpse of what goes on behind every talk that starts on time. If you do, play it with your team, take your chapter into the Chapter Cup and tell me your worst crisis: it becomes a card in the game.
+If you don't run events, it's a glimpse of what goes on behind every talk that starts on time. If you do, play it with your team and tell me your worst crisis: it becomes a card in the game.
 
 Free, in the browser, in five languages: https://overbooked.web.app/?s=li
 

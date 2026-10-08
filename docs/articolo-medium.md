@@ -28,11 +28,11 @@ Ogni evento ha tre atti.
 - **La giornata.** In tempo reale, nella sede dell'evento. Tocchi un problema e il tuo organizzatore ci va e lo risolve. Ogni problema ha un anello che si svuota; il triangolo giallo è un guaio che sta per arrivare e si può prevenire. Intanto la chat dello staff non dorme mai e chi attraversa la folla viene fermato ogni tre passi.
 - **La retro.** Il giornale locale, i numeri, i momenti chiave, tre lezioni con le fonti e le domande per la retro di gruppo.
 
-La stagione ha sei eventi: il meetup del giovedì, lo Study Jam, una giornata Women Techmakers (spazio bimbi, consenso alle foto, percorso accessibile), Google I/O Extended, un hackathon notturno e infine il DevFest. Ogni evento ha tre obiettivi, che valgono una stella ciascuno, e le stelle comprano il kit del chapter: walkie-talkie, lettore QR, una squadra storica di volontari.
+La stagione ha sei eventi: il meetup del giovedì, lo Study Jam, una giornata Women Techmakers (spazio bimbi, consenso alle foto, percorso accessibile), Google I/O Extended, un hackathon notturno e infine il DevFest. Per ogni evento ci sono tre obiettivi da una stella ciascuno, e con le stelle si compra il kit del chapter: walkie-talkie, lettore QR, una squadra storica di volontari.
 
 Non giochi da solo. Il co-organizzatore e i volontari prendono ordini: tocchi loro, poi il punto in cui servono. Metti un volontario al coffee desk e vedi le persone girare con la tazza in mano, mentre la soddisfazione risale. Ogni ruolo ha un'abilità, ci sono le ore di punta e, per chi ha già tre stelle, la versione sold-out, con più gente e più guai. Le sedi sono due, un'università e un coworking, ognuna con le sue trappole.
 
-Ogni consiglio nel gioco cita una fonte: guide per organizzatori GDG, retrospettive di DevFest, linee guida su accessibilità e consenso alle foto, la guida MLH per gli hackathon.
+I consigli del gioco citano tutti una fonte: guide per organizzatori GDG, retrospettive di DevFest, linee guida su accessibilità e consenso alle foto, la guida MLH per gli hackathon.
 
 ### Il caos, ma leggibile
 
@@ -72,7 +72,7 @@ Una classifica online di solito invita a barare. Qui il determinismo mi ha fatto
 
 Il tutorial conta quanto il gioco: un gioco bello e incomprensibile si chiude dopo un minuto. E le lezioni vere sono le più divertenti. Murphy è inventato, ma il portatile senza adattatore è successo a tutti.
 
-L'AI rende meglio dentro un recinto, dove porta contenuti locali e sorprendenti mentre le regole restano nel codice. Il determinismo, invece, ripaga due volte: serve al bilanciamento e rende verificabile ogni punteggio della classifica.
+L'AI rende meglio dentro un recinto, dove porta contenuti locali e sorprendenti mentre le regole restano nel codice. Il determinismo ripaga due volte: serve al bilanciamento e rende verificabile ogni punteggio della classifica.
 
 ### Provalo
 
@@ -116,7 +116,7 @@ The season has six events: a Thursday meetup, a Study Jam, a Women Techmakers da
 
 You're not playing alone. The co-organizer and the volunteers take orders: tap them, then the spot where they're needed. Put a volunteer at the coffee desk and you see people walking around with a cup in hand while satisfaction climbs back. Every role has an ability, there are rush hours and, once you have three stars, a sold-out version with more people and more trouble. There are two venues, a university and a coworking space, each with its own traps.
 
-Every tip in the game cites a source: GDG organizer guides, DevFest retrospectives, guidelines on accessibility and photo consent, the MLH hackathon guide.
+The tips in the game all cite a source: GDG organizer guides, DevFest retrospectives, guidelines on accessibility and photo consent, the MLH hackathon guide.
 
 ### Chaos you can read
 
@@ -148,7 +148,7 @@ Every change to timings, cards or goals goes through a bot that plays the season
 
 ### The same day for everyone
 
-Every week there's a challenge that's the same for everyone: same event, same trouble at the same time, standard preparation and no kit, so only how you play counts. Each chapter's three best scores go into the Chapter Cup.
+Each week brings a challenge that's the same for everyone: same event, same trouble at the same time, standard preparation and no kit, so only how you play counts. Each chapter's three best scores go into the Chapter Cup.
 
 An online leaderboard usually invites cheating. Here determinism gave me a gift: the browser records only the player's commands, and at the end of the day the server replays the game with the same simulation code. If the score doesn't match, it doesn't count. No account required: your chapter's name is enough.
 
