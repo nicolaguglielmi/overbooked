@@ -67,3 +67,17 @@ Free, in the browser, in five languages: https://overbooked.web.app/?s=li
 The code is open, under the Apache 2.0 license: https://github.com/nicolaguglielmi/overbooked
 
 Players pick their own chapter and city, so any community can make its own version: if you build something on top of this, let me know. The full story, with the technical choices, is on Medium: [link]
+
+## Short variant (EN)
+
+Five minutes is all it takes to see what goes on behind a DevFest. ⏱️
+
+I built a co-op game where you run a tech event: you prepare everything in a few free evenings, then survive the day while the staff chat explodes.
+
+Spoiler: the talk doesn't start until the speaker is on stage and the projector sees the laptop. And the pizza won't order itself.
+
+I made it for people who run meetups, conferences, hackathons and DevFests. It's free, and every week there's a challenge that's the same for everyone, with the Chapter Cup.
+
+Try it and tell me what time you gave up: https://overbooked.web.app/?s=li
+
+#DevFest #GDG #TechEvents #CommunityManagement
