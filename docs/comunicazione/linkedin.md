@@ -30,9 +30,9 @@ Chapter e città li sceglie chi gioca, così ogni community può farne la sua ve
 
 ## Variante breve (IT)
 
-Per avere un assaggio di quello che c'è dietro un DevFest bastano cinque minuti. ⏱️
+La nostra DevFest Campobasso è finita da qualche settimana, ma c'è come un vuoto. Sì, un vuoto di stress... 😅
 
-Ho costruito un gioco cooperativo in cui organizzi un evento tech: prepari tutto con poche sere libere, poi sopravvivi alla giornata mentre la chat dello staff esplode.
+Per colmarlo ho costruito un gioco cooperativo in cui organizzi un evento tech: prepari tutto con poche sere libere, poi sopravvivi alla giornata mentre la chat dello staff esplode.
 
 Spoiler: il talk non parte finché lo speaker non è sul palco e il proiettore non vede il portatile. E la pizza non si ordina da sola.
 
@@ -70,9 +70,9 @@ Players pick their own chapter and city, so any community can make its own versi
 
 ## Short variant (EN)
 
-Five minutes is all it takes to see what goes on behind a DevFest. ⏱️
+Our DevFest Campobasso ended a few weeks ago, and something's missing. Yes, the stress... 😅
 
-I built a co-op game where you run a tech event: you prepare everything in a few free evenings, then survive the day while the staff chat explodes.
+To fill the gap I built a co-op game where you run a tech event: you prepare everything in a few free evenings, then survive the day while the staff chat explodes.
 
 Spoiler: the talk doesn't start until the speaker is on stage and the projector sees the laptop. And the pizza won't order itself.
 
