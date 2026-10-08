@@ -1,0 +1,96 @@
+{
+  "rules": {
+    "rooms": {
+      "$code": {
+        ".read": "auth != null && $code.matches(/^[A-Z2-9]{4}$/)",
+        ".write": "auth != null && data.exists() && data.child('meta/host').val() === auth.uid && !newData.exists()",
+        "meta": {
+          ".write": "auth != null && $code.matches(/^[A-Z2-9]{4}$/) && (!data.exists() || data.child('host').val() === auth.uid)",
+          ".validate": "newData.hasChildren(['host', 'created']) && newData.child('host').val() === auth.uid && newData.child('created').isNumber() && newData.child('created').val() <= now + 60000 && (data.exists() || newData.child('created').val() > now - 300000)"
+        },
+        "players": {
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid && root.child('rooms/' + $code + '/meta').exists()",
+            ".validate": "newData.hasChildren(['name', 'role']) && newData.child('name').isString() && newData.child('name').val().length <= 20 && newData.child('role').val().matches(/^(lead|tech|host|care)$/)"
+          }
+        },
+        "state": {
+          "$ch": {
+            ".write": "auth != null && root.child('rooms/' + $code + '/meta/host').val() === auth.uid",
+            ".validate": "newData.isString() && newData.val().length < 60000 && $ch.matches(/^(lobby|prep|run|snap|retro|gazette)$/)"
+          }
+        },
+        "inputs": {
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid && root.child('rooms/' + $code + '/players/' + $uid).exists()",
+            ".validate": "newData.isString() && newData.val().length < 300"
+          }
+        },
+        "toHost": {
+          "$msg": {
+            ".write": "auth != null && ((!data.exists() && newData.child('from').val() === auth.uid && root.child('rooms/' + $code + '/players/' + auth.uid).exists()) || (!newData.exists() && root.child('rooms/' + $code + '/meta/host').val() === auth.uid))",
+            ".validate": "newData.child('data').isString() && newData.child('data').val().length < 2000"
+          }
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid && auth.token.firebase.sign_in_provider === 'google.com'",
+        "d": {
+          ".validate": "newData.isString() && newData.val().length <= 60000"
+        },
+        "t": {
+          ".validate": "newData.val() === now"
+        },
+        "c": {
+          ".validate": "newData.hasChildren(['ok', 'at']) && newData.child('at').val() === now",
+          "ok": {
+            ".validate": "newData.isBoolean()"
+          },
+          "at": {
+            ".validate": "newData.isNumber()"
+          },
+          "email": {
+            ".validate": "newData.parent().child('ok').val() === true && newData.isString() && newData.val() === auth.token.email"
+          },
+          "$other": {
+            ".validate": false
+          }
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "lb": {
+      "u": {
+        "$uid": {
+          ".read": "auth != null && auth.uid === $uid",
+          ".write": "auth != null && auth.uid === $uid && auth.token.firebase.sign_in_provider === 'google.com' && (!newData.exists() || !data.exists() || now - data.child('t').val() > 3000)",
+          ".validate": "newData.hasChildren(['n', 's', 't'])",
+          "n": {
+            ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 40"
+          },
+          "s": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 18"
+          },
+          "t": {
+            ".validate": "newData.val() === now"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      }
+    },
+    "$other": {
+      ".read": false,
+      ".write": false
+    }
+  }
+}

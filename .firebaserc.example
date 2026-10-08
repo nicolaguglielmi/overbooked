@@ -1,0 +1,8 @@
+{
+  "projects": { "default": "your-project-id", "emu": "demo-lmh" },
+  "targets": {
+    "your-project-id": {
+      "hosting": { "game": ["your-hosting-site"], "redirect": ["your-project-id"] }
+    }
+  }
+}

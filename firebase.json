@@ -1,0 +1,111 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": [
+    {
+      "target": "game",
+      "public": "dist/web",
+      "ignore": [
+        "**/.*"
+      ],
+      "rewrites": [
+        {
+          "source": "/api/**",
+          "function": {
+            "functionId": "api",
+            "region": "europe-west1"
+          }
+        }
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Content-Security-Policy",
+              "value": "frame-ancestors 'none'; object-src 'none'; base-uri 'none'"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "camera=(), microphone=(), geolocation=(), payment=()"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin-allow-popups"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css|html)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            }
+          ]
+        },
+        {
+          "source": "assets/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=604800"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "redirect",
+      "public": "dist/moved",
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "https://overbooked.web.app/",
+          "type": 301
+        },
+        {
+          "source": "/:path*",
+          "destination": "https://overbooked.web.app/:path*",
+          "type": 301
+        }
+      ]
+    }
+  ],
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "database": {
+      "port": 9000
+    },
+    "functions": {
+      "port": 5001
+    },
+    "ui": {
+      "enabled": false
+    },
+    "singleProjectMode": true
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "runtime": "nodejs22",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "*.log"
+      ]
+    }
+  ]
+}

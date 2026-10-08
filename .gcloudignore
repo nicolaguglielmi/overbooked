@@ -1,0 +1,17 @@
+# never ship the key
+.env
+.env.*
+# not needed to build or run
+.claude
+dist
+docs
+content
+tools/sprites_raw
+*.md
+**/.env
+**/.env.*
+.git
+.firebase
+.firebaserc
+functions
+node_modules

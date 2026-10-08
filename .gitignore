@@ -1,0 +1,27 @@
+# secrets: the Gemini key and any local env
+.env
+.env.*
+functions/.env*
+.runtimeconfig.json
+*.pem
+*.key
+*service-account*.json
+
+# build output and dependencies
+dist/
+node_modules/
+.firebase/
+
+# logs and local tooling
+*.log
+.claude/settings.local.json
+__pycache__/
+.DS_Store
+
+# sprite drafts (only the style reference is kept)
+tools/sprites_raw/*_v*.png
+
+# the project's own config (placeholders in *.example)
+firebase-config.js
+.firebaserc
+CLAUDE.local.md
