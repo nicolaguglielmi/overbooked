@@ -52,9 +52,9 @@ L'AI però non decide mai niente della partita. Regole, punteggi e bilanciamento
 4. la chat che reagisce a quello che succede;
 5. la forgia, che trasforma la crisi raccontata da chi organizza in una carta giocabile.
 
-Per ogni compito scrivo io il prompt, il contesto è piccolo e validato e la risposta arriva come JSON strutturato (`responseSchema`). Viene poi ripulita e limitata: una carta generata non può regalare diecimila euro di budget.
+Per ogni compito scrivo io il prompt, il contesto è piccolo e validato e la risposta arriva come JSON strutturato (`responseSchema`). Viene poi ripulita e limitata: una carta generata non può regalare 10.000€ di budget.
 
-Sulla chiave ho preso la decisione più delicata. Non la conservo e non passa dai server del gioco. Resta nel browser di chi gioca, solo per la sessione salvo diversa scelta, e va soltanto verso l'API di Gemini. La pagina su Firebase Hosting ha una Content Security Policy rigida, senza script inline e con connessioni ammesse solo verso Gemini e i servizi Firebase del gioco (stanze online e classifica). Dentro il gioco una guida spiega come creare una chiave dedicata, limitata all'API Gemini e al dominio del gioco, con un budget basso. Un controllo automatico prima di ogni pubblicazione verifica che un solo file tocchi la chiave e che parli solo con Google.
+Sulla chiave ho preso la decisione più delicata. Non la conservo e non passa dai server del gioco: resta nel browser di chi gioca, solo per la sessione salvo diversa scelta, e va soltanto verso l'API di Gemini. La pagina su Firebase Hosting ha una Content Security Policy rigida: niente script inline, connessioni solo verso Gemini e i servizi Firebase del gioco (stanze online e classifica). Dentro il gioco una guida spiega come creare una chiave dedicata, limitata all'API Gemini e al dominio del gioco, con un budget basso. E prima di ogni pubblicazione un controllo automatico verifica che un solo file tocchi la chiave e che parli solo con Google.
 
 Anche le statistiche sono anonime: niente cookie e nessun identificativo, solo contatori che mi dicono dove il gioco si inceppa.
 
@@ -68,6 +68,10 @@ Ogni settimana c'è una sfida uguale per tutti: stesso evento, stessi guai alla 
 
 Una classifica online di solito invita a barare. Qui il determinismo mi ha fatto un regalo: il browser registra solo i comandi di chi gioca, e a fine giornata il server rigioca la partita con lo stesso codice della simulazione. Se il punteggio non torna, non entra. Nessun account obbligatorio: basta il nome del chapter.
 
+### Cosa non fa (ancora)
+
+La Chapter Cup conta i nomi che iniziano con GDG, GDSC o WTM; gli altri giocano e vedono il punteggio verificato, ma in classifica entrano solo se li approvo a mano. Gemini c'è solo con la propria chiave, e da telefono si gioca in orizzontale.
+
 ### Cosa ho imparato
 
 Il tutorial conta quanto il gioco: un gioco bello e incomprensibile si chiude dopo un minuto. E le lezioni vere sono le più divertenti. Murphy è inventato, ma il portatile senza adattatore è successo a tutti.
@@ -80,9 +84,9 @@ Si gioca dal browser, gratis, in italiano, inglese, francese, spagnolo e tedesco
 
 Ogni lunedì parte una nuova sfida della settimana: porta il tuo chapter nella Chapter Cup.
 
-Il codice è aperto, con licenza Apache 2.0: https://github.com/nicolaguglielmi/overbooked. Chapter e città li sceglie chi gioca, così ogni community può farne la propria versione.
+Il codice è aperto, con licenza Apache 2.0: https://github.com/nicolaguglielmi/overbooked. Chapter e città li sceglie chi gioca, così ogni community può farne la propria versione. Se ci costruisci sopra qualcosa, fammelo sapere.
 
-Se organizzi eventi, usalo alla prossima riunione dello staff: dieci minuti di partita e mezz'ora di retro valgono più di molte slide. E raccontami la tua crisi peggiore: nella forgia diventa una carta da scambiare con altre community.
+Se organizzi eventi, usalo alla prossima call dello staff: 10 minuti di partita e mezz'ora di retro valgono più di molte slide. E raccontami la tua crisi peggiore: nella forgia diventa una carta da scambiare con altre community.
 
 *Un progetto di Nicola Guglielmi (GDE), organizer di GDG Campobasso. Progetto della community, non è un prodotto ufficiale Google.*
 
@@ -136,9 +140,9 @@ The AI never decides anything about the game, though. Rules, scores and balance 
 4. the chat reacting to what just happened;
 5. the forge, which turns a crisis told by an organizer into a playable card.
 
-For every task I write the prompt, the context is small and validated, and the answer comes back as structured JSON (`responseSchema`). It is then cleaned and clamped: a generated card can't hand out ten thousand euros of budget.
+For every task I write the prompt, the context is small and validated, and the answer comes back as structured JSON (`responseSchema`). It is then cleaned and clamped: a generated card can't hand out €10,000 of budget.
 
-Handling the key was the most delicate decision. I don't keep it, and it never touches the game's servers. It stays in the player's browser, for the session unless they choose otherwise, and goes only to the Gemini API. The page on Firebase Hosting has a strict Content Security Policy, with no inline scripts and connections allowed only to Gemini and the game's Firebase services (online rooms and leaderboard). Inside the game, a guide explains how to create a dedicated key restricted to the Gemini API and the game's domain, with a low budget. An automatic check before every release verifies that a single file touches the key and that it only talks to Google.
+Handling the key was the most delicate decision. I don't keep it and it never touches the game's servers: it stays in the player's browser, for the session unless they choose otherwise, and goes only to the Gemini API. The page on Firebase Hosting has a strict Content Security Policy: no inline scripts, connections only to Gemini and the game's Firebase services (online rooms and leaderboard). Inside the game, a guide explains how to create a dedicated key, restricted to the Gemini API and the game's domain, with a low budget. And before every release an automatic check verifies that a single file touches the key and that it only talks to Google.
 
 The stats are anonymous too: no cookies and no identifiers, just counters that tell me where the game gets stuck.
 
@@ -152,6 +156,10 @@ Each week brings a challenge that's the same for everyone: same event, same trou
 
 An online leaderboard usually invites cheating. Here determinism gave me a gift: the browser records only the player's commands, and at the end of the day the server replays the game with the same simulation code. If the score doesn't match, it doesn't count. No account required: your chapter's name is enough.
 
+### What it doesn't do (yet)
+
+The Chapter Cup counts names starting with GDG, GDSC or WTM; other players still get a verified score, but they join the board only if I approve them by hand. Gemini works only with your own key, and on a phone you play in landscape.
+
 ### What I learned
 
 The tutorial matters as much as the game: a beautiful game nobody understands gets closed after a minute. And real lessons are the most fun. Murphy is made up, but the laptop without an adapter has happened to everyone.
@@ -164,8 +172,8 @@ It runs in the browser, for free, in Italian, English, French, Spanish and Germa
 
 A new weekly challenge starts every Monday: take your chapter into the Chapter Cup.
 
-The code is open, under the Apache 2.0 license: https://github.com/nicolaguglielmi/overbooked. Players pick their own chapter and city, so any community can make its own version.
+The code is open, under the Apache 2.0 license: https://github.com/nicolaguglielmi/overbooked. Players pick their own chapter and city, so any community can make its own version. If you build something on top of this, let me know.
 
-If you run events, bring it to your next organizers' meeting: ten minutes of play and half an hour of retro beat a lot of slides. And tell me your worst crisis: in the forge it becomes a card to share with other communities.
+If you run events, bring it to your next staff call: 10 minutes of play and half an hour of retro beat a lot of slides. And tell me your worst crisis: in the forge it becomes a card to share with other communities.
 
 *A project by Nicola Guglielmi (GDE), organizer at GDG Campobasso. A community project, not an official Google product.*
