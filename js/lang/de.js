@@ -455,20 +455,24 @@ DF.L.de = {
       "goals": "ZIELE",
       "points": "PUNKTE",
       "combo": "COMBO ×{n}",
-      "chat": "TEAM-CHAT",
+      "chat": "STAFF-CHAT",
       "forced": "Zwangspause",
-      "box": "GDG-BOX · Tippen zum Nehmen",
+      "box": "GDG-BOX",
+      "boxHere": "BOX · HIER NEHMEN",
+      "boxIn": "AN DER BOX ↓",
+      "boxTap": "Tippe ein Tool an, um es zu nehmen",
+      "boxEmpty": "Sie ist leer: Fülle sie im Countdown",
       "missing": "fehlt",
       "panic": "CHAOS!",
-      "rush": "ANSTURM",
+      "rush": "RUSHHOUR",
       "open": "Einlass",
       "next": "Gleich: {t}",
       "end": "Abschluss",
       "closed": "ZU",
       "stage": "BÜHNE",
-      "late": "+{m} Min.",
+      "late": "{m}' zu spät",
       "starting": "Geht los…",
-      "noSignal": "KEIN SIGNAL",
+      "noSignal": "NO SIGNAL",
       "unread": "+{n}",
       "reply": "Antworten"
     },
@@ -1968,203 +1972,207 @@ DF.L.de = {
   },
   "coach": {
     "welcome": [
-      "Willkommen vor Ort!",
-      "Das Spiel pausiert bei Neuerungen. Lies in Ruhe und drücke dann Verstanden (oder Enter)."
+      "Willkommen in der Location!",
+      "Das Spiel pausiert bei jedem neuen Ereignis. Lies in Ruhe und drücke dann Verstanden (oder Enter)."
     ],
     "you": [
       "Das bist du",
-      "Tippe auf die Karte, um hinzugehen (Tastatur: WASD oder Pfeiltasten). Tippe auf ein Problem, um es selbst zu lösen."
+      "Tippe auf die Karte, um dorthin zu laufen (Tastatur: WASD oder Pfeile). Tippe auf ein Problem und du löst es im Alleingang."
     ],
     "checkin": [
       "Check-in",
-      "Hier kommen alle an. Gibt es eine Schlange, tippe auf den Empfang: Du bleibst dort und lässt die Leute rein."
+      "Hier kommen die Leute an. Bildet sich eine Schlange, tippe auf den Tresen: Bleib dort und lass sie rein."
     ],
     "goals": [
       "Heutige Ziele",
-      "{list}. Jedes Ziel bringt einen Stern: Sterne schalten das nächste Event und Chapter-Kits frei."
+      "{list}. Jedes bringt einen Stern: Sterne schalten das nächste Event und das Chapter-Kit frei."
     ],
     "rating": [
       "Die Bewertung",
-      "Steigt, wenn alles läuft, und sinkt bei Eskalationen oder Ausfällen. Zählt am Ende."
+      "Sie steigt, wenn alles rundläuft, und sinkt bei Problemen oder Ausfällen. Am Ende zählt das Ergebnis."
     ],
     "problem": [
       "Ein Problem!",
-      "Der Ring zeigt die Zeit bis zur Eskalation. Tippe auf das Icon: Du gehst hin und fixt es. Der grüne Bogen ist der Fortschritt."
+      "Der Ring zeigt die verbleibende Zeit. Tippe auf das Icon: Geh hin und behebe es. Der grüne Bogen ist dein Fortschritt."
     ],
     "tool": [
       "Werkzeug nötig",
-      "{tool}: liegt in der GDG-Kiste in der Regie (unten links). Tippe aufs Problem und nimm es auf dem Weg mit – so geht's viel schneller."
+      "{tool}: Liegt in der GDG-Box in der Regie. Tippe aufs Problem und du nimmst es mit. Manuell: Geh in den Kreis und wähle es unten aus."
+    ],
+    "map": [
+      "Die ganze Location",
+      "Hier unten siehst du alles: Punkte sind Probleme, der weiße Rahmen dein Blickfeld. Tippe wohin und dein Host läuft los."
     ],
     "noTool": [
-      "Fehlendes Werkzeug",
-      "Niemand hat {tool} beim Countdown eingepackt. Du kannst improvisieren, aber es dauert länger: nächstes Mal vorbereiten."
+      "Werkzeug fehlt",
+      "Niemand hat im Countdown {tool} eingepackt. Du kannst improvisieren, aber es dauert länger: Bereite es nächstes Mal vor."
     ],
     "crew": [
-      "Hilfe nötig",
-      "Das geht nur zu zweit: Hol dir Volunteers (antippen, dann Zielort) oder pack mit der Co-Orga an."
+      "Brauchst du Hilfe?",
+      "Hierfür braucht es zwei: Hol einen Volunteer (antippen, dann Ziel wählen) oder pack mit deinem Co-Host an."
     ],
     "warn": [
-      "Das gelbe Dreieck",
-      "Hier droht gleich Ärger. Geh vorher hin, um es abzuwenden: bringt mehr als reparieren."
+      "Gelbes Warndreieck",
+      "Ein drohendes Problem. Geh hin, bevor es aufpoppt, um es zu verhindern: Bringt mehr Punkte als Reparieren."
     ],
     "chat": [
-      "Der Team-Chat",
-      "Nicht nur zum Lesen: Jede Antwort ändert etwas vor Ort (Speaker verlaufen sich nicht, Helfer am Check-in, mehr Kaffee). Antworte mit Q oder E (oder tippen), bevor der Balken abläuft: Ignorierst du es, entscheidet der Zufall."
+      "Der Staff-Chat",
+      "Nicht nur Deko: Jede Antwort verändert etwas (Speaker findet den Weg, Hilfe am Einlass, mehr Kaffee). Antworte mit Q oder E, bevor der Balken abläuft!"
     ],
     "murphy": [
       "Murphy!",
-      "Der Pannen-Kobold will sabotieren. Tippe ihn an und fang ihn rechtzeitig ab: Er flieht und bringt Punkte."
+      "Der Pannen-Kobold will etwas sabotieren! Fang ihn ab, bevor er ankommt: Er haut ab und du holst dir Punkte."
     ],
     "panic": [
       "CHAOS!",
-      "Vier Probleme auf einmal. Erst durchatmen: Nimm dir das mit dem leersten Ring vor. Volunteers helfen."
+      "Vier Probleme auf einmal. Tief durchatmen: Nimm dir zuerst den leersten Ring vor. Volunteers helfen mit."
     ],
     "firedrill": [
       "Feueralarmprobe",
-      "Alle raus aus den Sälen, Talks stoppen. Einfach abwarten (und nächstes Mal die Venue nach den Probezeiten fragen)."
+      "Alle kurz raus aus den Räumen, Talks stoppen. Einfach abwarten (und nächstes Mal vorher nach dem Alarm-Plan fragen)."
     ],
     "goalOk": [
       "Ziel erreicht!",
-      "{goal}: Dieser Stern gehört dir. Die weiteren Ziele stehen oben."
+      "{goal}: Der Stern gehört dir. Die anderen Ziele stehen oben."
     ],
     "goalFail": [
       "Ziel verfehlt",
-      "{goal}: Heute leider nicht. Die anderen Sterne kannst du noch holen."
+      "{goal}: Heute nicht mehr. Du kannst aber noch die anderen Sterne holen."
     ],
     "burnout": [
       "Burnout",
-      "Energie ist leer, Zwangspause. Hol dir einen Kaffee, bevor du auf null fällst: Anzeige oben rechts."
+      "Dir ist die Energie ausgegangen – Zwangspause! Hol dir einen Kaffee, bevor du bei null bist: Leiste oben rechts."
     ],
     "energy": [
       "Wenig Energie",
-      "Orga schlaucht. Gönn dir Kaffee im Foyer oder mach Pause im Speaker-Raum, um ein Burnout zu vermeiden."
+      "Orga schlaucht. Hol dir einen Kaffee in der Lobby oder tanke Energie im Speaker-Raum, bevor du umkippst."
     ],
     "vols": [
-      "Helfer",
-      "Auf ihren Posten helfen sie den Leuten: Kaffee, Antworten, Begrüßung – und das Rating steigt. Tippe auf einen Helfer, dann auf ein Problem oder einen Posten (grüne Kreise), um ihn zu bewegen."
+      "Volunteers",
+      "Auf ihren Posten helfen sie Gästen: Kaffee, Infos, Empfang – und die Laune steigt! Tippe auf Volunteers und dann aufs Ziel, um sie zuzuweisen."
     ],
     "rush": [
       "Stoßzeit",
-      "Mehrere Probleme auf einmal, markiert mit ⚡. Löst alle, bevor eins eskaliert und die Stimmung kippt. Teilt euch auf: Schick Co-Orgs und Volunteers los."
+      "Mehrere Krisen gleichzeitig (⚡). Löse alle, bevor eine eskaliert, und die Wertung geht durch die Decke. Teilt euch auf!"
     ],
     "ability": [
       "Deine Fähigkeit: {name}",
-      "Die gelbe Taste oben (F auf der Tastatur): {what} Lädt sich danach wieder auf, also nutze sie mit Bedacht!"
+      "Der gelbe Button oben (Taste F): {what} Lädt sich danach wieder auf, also heb sie dir für Notfälle auf."
     ],
     "mate": [
-      "Dein Co-Org",
-      "Arbeitet allein, nimmt aber Befehle an: Antippen, Problem antippen und ab geht's. Kümmer du dich um was anderes."
+      "Dein Co-Host",
+      "Arbeitet autark, hört aber aufs Wort: Antippen, Problem wählen, los geht's. Du kannst dich um anderes kümmern."
     ],
     "waiting": [
       "Talk startet nicht",
-      "Es braucht Speaker auf der Bühne und einen Beamer, der läuft. Jede Warteminute kostet Bewertung; nach 26 Min fällt der Talk aus."
+      "Braucht Speaker auf der Bühne und einen Beamer. Jede Minute Warten kostet Punkte; nach 26 Minuten platzt der Talk."
     ],
     "night": [
-      "Zu später Stunde",
-      "Zwischen 1 und 6 Uhr schwindet die Energie schneller. Wechselt euch beim Kaffee ab oder nutzt den Ruheraum, falls vorbereitet."
+      "Geisterstunde",
+      "Zwischen 1 und 6 Uhr sinkt die Energie schneller. Wechselt euch an der Kaffeemaschine oder im Ruheraum ab."
     ],
     "locked": [
       "Ausgesperrt",
-      "Niemand hat den Hausmeister kontaktiert: Alle warten draußen. Nächstes Mal die Schlüssel-Karte beim Countdown wählen."
+      "Niemand hat den Hausmeister gerufen: Alle warten draußen. Nächstes Mal im Countdown die Schlüssel-Karte einpacken!"
     ],
     "ev:meetup": [
       "Donnerstags-Meetup",
-      "Ein Raum, zwei Talks, vierzig Pizzen. Das entspannteste Level: Probier die Steuerung ganz in Ruhe aus."
+      "Ein Raum, zwei Talks, vierzig Pizzen. Die perfekte Einsteigerrunde: Teste die Steuerung ganz entspannt."
     ],
     "ev:studyjam": [
-      "Die Study Jam",
-      "Codelab im Lab: Steckdosenleisten, Wi-Fi und Cloud-Guthaben sind euer Einmaleins. Zwei Räume offen."
+      "Der Study Jam",
+      "Codelab im Lab: Steckdosen, Wi-Fi und Cloud-Guthaben sind euer Treibstoff. Zwei Räume am Start."
     ],
     "ev:wtm": [
       "Women Techmakers",
-      "Heute zählt Gastfreundschaft: herumwuselnde Kids, Foto-Einwilligungen, Barrierefreiheit. Niemand bleibt außen vor."
+      "Heute zählt Wohlfühlen: Kein Kind geht verloren, Foto-Einverständnis klären, barrierefreie Wege. Niemand bleibt außen vor."
     ],
     "ev:ioext": [
       "Google I/O Extended",
-      "Live-Keynote, voller Saal, VIPs im Anmarsch. Der Abend der Livestreams."
+      "Keynote-Stream, voller Saal, VIP im Anflug. Die große Nacht der Livestreams."
     ],
     "ev:hack": [
       "Der Nacht-Hackathon",
-      "18 bis 10 Uhr morgens. Festsitzende Teams (🧩) warten auf Mentoring, Pizza um Mitternacht, Demos um 8."
+      "18 bis 10 Uhr. Festsitzende Teams (🧩) warten auf Mentoren, Pizza um Mitternacht, Demos um 8."
     ],
     "ev:devfest": [
-      "Die DevFest",
-      "Drei Räume, fünfzehn Sessions und Murphy. Alles, was du gelernt hast, auf einmal."
+      "Das DevFest",
+      "Drei Räume, 15 Sessions und Murphy. Alles, was du gelernt hast, auf einmal."
     ],
     "tPrepWeeks": [
       "Der Countdown",
-      "Noch wenige Wochen: Jede Runde ist ein Teil der Orga. Deine Entscheidungen prägen den Event-Start."
+      "Noch wenige Wochen: Jede Runde ist ein Teil der Vorbereitung. Deine Entscheidungen prägen den Tag."
     ],
     "tPrepPips": [
-      "Deine Feierabende",
-      "Jeder Punkt ist ein Abend. Optionen kosten 0 bis 2 Punkte: Man kann nicht alles schaffen."
+      "Deine freien Abende",
+      "Jeder Punkt ist ein Abend. Optionen kosten 0 bis 2 Punkte: Du kannst nicht alles machen."
     ],
     "tPrepOpt": [
-      "Auswählen",
-      "Tippe eine Option an, um sie zu übernehmen. Grüne und rote Tags zeigen die Auswirkungen."
+      "Wähle aus",
+      "Tippe auf eine Option, um sie anzupacken. Grüne und rote Tags zeigen, was sich ändert."
     ],
     "tPrepIgnore": [
-      "Liegengeblieben",
-      "Was du nicht auswählst, passiert trotzdem von allein. Manchmal ist Ignorieren genau richtig."
+      "Wenn sich niemand kümmert",
+      "Was du liegen lässt, passiert trotzdem: Das hier. Manchmal ist Ignorieren genau richtig."
     ],
     "tPrepMeters": [
-      "Die Chapter-Bücher",
-      "Budget, RSVPs, Community, Partner und Energie: Behalte die Werte im Auge."
+      "Die Chapter-Zahlen",
+      "Budget, RSVPs, Community, Partner und Energie: Behalte sie im Auge."
     ],
     "tPrepClose": [
       "Runde beenden",
-      "Wenn deine Wahl steht, schließe ab: Du siehst direkt das Ergebnis und Learnings."
+      "Wenn du entschieden hast, schließe ab: Sieh dir an, wie es lief und was du gelernt hast."
     ],
     "tLoStats": [
-      "Der Vortag",
-      "Das bringst du mit in den Tag: erwartete Gäste, Volunteers, Energie, Budget."
+      "Der Tag davor",
+      "Damit startest du in den Tag: Erwartete Gäste, Volunteers, Energie, Budget."
     ],
     "tLoGoals": [
       "Die Ziele",
-      "Drei Ziele, drei Sterne. Du siehst sie tagsüber auch oben am Rand."
+      "Drei Ziele, drei Sterne. Du siehst sie während des Events auch ganz oben."
     ],
     "tLoGo": [
-      "Einlass!",
-      "Wenn du bereit bist, öffne die Türen. Bei Neuerungen pausiert das Spiel."
+      "Türen auf!",
+      "Sobald du bereit bist: Einlass! Das Spiel pausiert, um Neues zu erklären."
     ],
     "tSeasonEv": [
-      "Die Saison",
+      "Die Season",
       "Sechs Events, vom Meetup bis zum DevFest. Drei Ziele pro Event: Ein Stern schaltet das nächste frei."
     ],
     "tSeasonKit": [
       "Das Chapter-Kit",
-      "Hier gibst du Sterne aus – für Upgrades, die bei jedem Event wirken."
+      "Hier gibst du Sterne aus – für Upgrades, die bei jedem Event helfen."
     ],
     "p": {
-      "queue": "Schlange am Einlass. Geh zum Check-in-Desk und bleib da, oder schick einen Volunteer hin.",
-      "stampante": "Badgedrucker-Stau: Check-in stockt. Geh zum Desk und repariere ihn.",
-      "speaker": "Speaker in der Lobby verirrt. Geh hin: folgt dir. Dann ab zur Bühne (grüner Kreis).",
-      "hdmi": "Speaker-Laptop streikt. Mit Adaptern aus der Kiste sekvenschnell; ohne: Improvisieren.",
-      "mic": "Mikro-Akku fast leer. Batterien aus der Kiste holen, dann auf der Bühne fixen.",
-      "wifi": "Wi-Fi down: Rack im Regieraum neu starten oder Hotspot im Lab anwerfen.",
-      "prese": "Im Lab fehlen Steckdosen. Mehrfachstecker liegen in der Kiste.",
-      "coffee": "Kaffee geht aus. Kaffeemaschinen an der Bar nachfüllen.",
-      "pizza": "Lieferdienst mit Pizzen am Eingang. Hol sie, bevor sie kalt werden.",
-      "overflow": "Saal voll, Gäste stehen draußen. An der Tür: Zum Stream in die Lobby schicken.",
-      "sponsor": "Sponsor will dich sprechen, sofort. Geh zum Stand.",
-      "perso": "Jemand sucht seinen Raum. Kurze Auskunft und alles passt.",
-      "coc": "Code-of-Conduct-Meldung. Geht vor allem anderen: sofort hin, zuhören, schützen.",
-      "cancel": "Speaker kommt nicht. Auf der Bühne improvisieren (Lightning Talks, Q&A): leg dort los.",
-      "tavoli": "Lab umräumen für den nächsten Workshop: Braucht eine helfende Hand mehr.",
-      "overrun": "Speaker überzieht. Zeig auf der Bühne das «5 Minuten»-Schild.",
-      "vip": "Wichtiger Besuch am Eingang. Begrüße sie, bevor sie sich ignoriert fühlen.",
-      "dog": "Hund im Saal! Geh hin: folgt dir. Bring ihn nach draußen.",
-      "press": "Presse will ein Interview: Gute Chance, bringt Beliebtheit.",
-      "flame": "Tabs vs. Spaces, Runde zwei. Geh dazwischen, bevor es eskaliert.",
-      "blackout": "Stromausfall im Raum: Sicherungskasten im Regieraum checken.",
-      "quota": "Cloud-Guthaben im Codelab aufgebraucht. Geht fix mit Vorrat aus der Kiste.",
-      "stream": "Stream ist stumm: Audio am AV-Desk fixen.",
-      "badge": "Keine Badges mehr am Check-in. Ersatz aus der Kiste oder per Hand schreiben.",
-      "kid": "Kind ist aus der Kinderecke entwischt. Geh ruhig hin und bring es zurück.",
-      "access": "Aufzug defekt: Gast über den barrierefreien Weg zur Main Hall bringen.",
-      "foto": "Fotograf knipst ohne Einverständnis. Kläre das kurz: Consent zählt.",
-      "mentor": "Team hängt fest (Build rot, API streikt). Mentor hilft: Tech ist doppelt so schnell.",
-      "noise": "Nachbarn beschweren sich über Lärm. Geh zum Eingang und deeskaliere."
+      "queue": "Schlange am Einlass. Tippe auf den Check-in und bleib dort, oder schick einen Volunteer hin.",
+      "stampante": "Der Badgedrucker streikt: Der Check-in staut sich. Geh zum Desk und reparier ihn.",
+      "speaker": "Speaker in der Lobby verirrt. Geh hin: Sie folgen dir. Dann ab zur Stage (grüner Kreis).",
+      "hdmi": "Der Laptop verbindet sich nicht. Mit Adaptern aus der Kiste ein Klacks – sonst improvisieren.",
+      "mic": "Mikrofonakku fast leer. Batterien aus der Kiste holen, dann ab auf die Stage.",
+      "wifi": "Wi-Fi ist weg: Rack in der Regie neustarten oder Hotspot im Lab anwerfen.",
+      "prese": "Im Lab fehlen Steckdosen. Die Mehrfachstecker liegen in der Kiste.",
+      "coffee": "Kaffee wird knapp. Füll die Maschinen an der Kaffeebar nach.",
+      "pizza": "Pizzabote am Eingang! Hol die Pizzen ab, bevor sie kalt werden.",
+      "overflow": "Raum voll, Gäste stehen draußen. An der Tür: Schick sie zum Stream in die Lobby.",
+      "sponsor": "Der Sponsor will dich sprechen. Sofort. Geh zum Stand.",
+      "perso": "Jemand sucht seinen Raum. Eine kurze Antwort und alles passt wieder.",
+      "coc": "Code of Conduct-Meldung. Geht vor: Geh sofort hin, hör zu, schütze die Person.",
+      "cancel": "Speaker fällt aus. Auf der Stage improvisieren (Lightning Talks, Q&A): Pack es an.",
+      "tavoli": "Das Lab muss fürs nächste Event umgebaut werden: Es braucht noch eine helfende Hand.",
+      "overrun": "Speaker überzieht maßlos. Zeig von der Stage aus das «5 Minuten»-Schild.",
+      "vip": "Wichtiger Besuch am Einlass! Begrüße den VIP, bevor er sich ignoriert fühlt.",
+      "dog": "Ein Hund im Saal! Geh hin: Er folgt dir. Bring ihn nach draußen.",
+      "press": "Presse will ein Interview: Gute Chance auf mehr Reichweite!",
+      "flame": "Tabs gegen Spaces: Die Fortsetzung. Trenne die Streithähne, bevor es eskaliert.",
+      "blackout": "Stromausfall im Raum: Sicherungskasten in der Regie reindrücken.",
+      "quota": "Cloud-Guthaben im Codelab aufgebraucht. Mit Credits aus der Kiste geht's sofort weiter.",
+      "stream": "Stream ist stumm: Fixe das Audio am AV-Pult.",
+      "badge": "Keine Badges mehr am Check-in. Ersatz aus der Kiste holen oder von Hand schreiben.",
+      "kid": "Ein Kind ist aus der Kids-Corner entwischt. Geh ruhig hin und bring es zurück.",
+      "access": "Aufzug defekt: Begleite den Gast über den barrierefreien Weg zur Main Hall.",
+      "foto": "Fotograf knipst Leute ohne Erlaubnis. Sprich mit ihm: Consent zählt.",
+      "mentor": "Ein Team hängt fest (Build rot, API tot). Ein Mentor hilft: Tech löst es doppelt so schnell.",
+      "noise": "Nachbarn beschweren sich über den Lärm. Geh zum Eingang und deeskaliere."
     }
   },
   "perks": {

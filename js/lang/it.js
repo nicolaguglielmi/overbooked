@@ -224,7 +224,7 @@ DF.L.it = {
       kidsCorner: "Spazio bimbi", photoLanyards: "Cordini per le foto", accessRoute: "Percorso accessibile", mentors: "Mentor a turni", restArea: "Sala riposo", judgingRules: "Regolamento pubblico", nightGuard: "Vigilanza notturna",
     },
     hud: {
-      sat: "GRADIMENTO", goals: "OBIETTIVI", points: "PUNTI", combo: "COMBO ×{n}", chat: "CHAT STAFF", forced: "in pausa forzata", box: "SCATOLA DEL GDG · tocca per prendere",
+      sat: "GRADIMENTO", goals: "OBIETTIVI", points: "PUNTI", combo: "COMBO ×{n}", chat: "CHAT STAFF", forced: "in pausa forzata", box: "SCATOLA DEL GDG", boxHere: "SCATOLA · PRENDI QUI", boxIn: "SEI ALLA SCATOLA ↓", boxTap: "tocca un attrezzo per prenderlo", boxEmpty: "è vuota: si riempie nel Countdown",
       missing: "manca", panic: "CAOS!", rush: "ORA DI PUNTA", open: "Apertura porte", next: "Tra poco: {t}", end: "Saluti finali", closed: "CHIUSA", stage: "PALCO",
       late: "In ritardo di {m}'", starting: "Si comincia…", noSignal: "NO SIGNAL", unread: "+{n}", reply: "Rispondi",
     },
@@ -541,7 +541,8 @@ DF.L.it = {
     goals: ["Gli obiettivi di oggi", "{list}. Ognuno vale una stella: le stelle sbloccano il prossimo evento e il kit del chapter."],
     rating: ["Il gradimento", "Sale quando le cose filano, scende quando un problema peggiora o salta un talk. Conta alla fine."],
     problem: ["Un problema!", "L'anello è il tempo che resta prima che peggiori. Tocca l'icona: ci vai e lo risolvi. L'arco verde è il lavoro fatto."],
-    tool: ["Serve un attrezzo", "{tool}: è nella Scatola del GDG, in Regia (in basso a sinistra). Toccando il problema passi prima a prenderlo: con l'attrezzo fai molto prima."],
+    tool: ["Serve un attrezzo", "{tool}: è nella Scatola del GDG, in Regia. Tocca il problema e passi prima a prenderlo. A mano: entra nel cerchio tratteggiato e scegli l'attrezzo nella barra in basso."],
+    map: ["Tutta la sede", "Qui in basso vedi tutta la sede: i puntini sono i problemi, il riquadro bianco è quello che stai guardando. Tocca un punto e il tuo organizzatore ci va."],
     noTool: ["Attrezzo mancante", "Nessuno ha messo {tool} nella Scatola durante il Countdown. Puoi improvvisare, ma ci metti di più: la prossima volta preparalo."],
     crew: ["Serve una mano", "Questo lavoro si fa in due: porta un volontario (toccalo, poi tocca il posto) o lavora insieme al co-organizzatore."],
     warn: ["Il triangolo giallo", "È un problema che sta per arrivare. Passaci sopra prima che scatti e lo previeni: vale più che ripararlo."],

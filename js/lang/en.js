@@ -224,7 +224,7 @@ DF.L.en = {
       kidsCorner: "Kids' corner", photoLanyards: "Photo lanyards", accessRoute: "Accessible route", mentors: "Mentors in shifts", restArea: "Rest room", judgingRules: "Public rules", nightGuard: "Night security",
     },
     hud: {
-      sat: "RATING", goals: "GOALS", points: "POINTS", combo: "COMBO ×{n}", chat: "STAFF CHAT", forced: "forced break", box: "GDG BOX · tap to take",
+      sat: "RATING", goals: "GOALS", points: "POINTS", combo: "COMBO ×{n}", chat: "STAFF CHAT", forced: "forced break", box: "GDG BOX", boxHere: "BOX · GRAB HERE", boxIn: "AT THE BOX ↓", boxTap: "tap a tool to take it", boxEmpty: "it's empty: you fill it in the Countdown",
       missing: "missing", panic: "CHAOS!", rush: "RUSH HOUR", open: "Doors open", next: "Next: {t}", end: "Wrap-up", closed: "CLOSED", stage: "STAGE",
       late: "{m}' late", starting: "Starting…", noSignal: "NO SIGNAL", unread: "+{n}", reply: "Reply",
     },
@@ -541,7 +541,8 @@ DF.L.en = {
     goals: ["Today's goals", "{list}. Each one is a star: stars unlock the next event and the chapter's kit."],
     rating: ["The rating", "It goes up when things run smoothly and down when a problem gets worse or a talk is lost. It counts at the end."],
     problem: ["A problem!", "The ring is the time left before it gets worse. Tap the icon: you go there and fix it. The green arc is the work done."],
-    tool: ["You need a tool", "{tool}: it's in the GDG box, in the control room (bottom left). Tap the problem and you'll grab it on the way: with the tool it's much faster."],
+    tool: ["You need a tool", "{tool}: it's in the GDG box, in the control room. Tap the problem and you'll grab it on the way. By hand: step into the dashed circle and pick the tool in the bar below."],
+    map: ["The whole venue", "Down here you see the whole venue: the dots are problems, the white frame is what you're looking at. Tap a spot and your organizer goes there."],
     noTool: ["Missing tool", "Nobody put {tool} in the box during the Countdown. You can improvise, but it takes longer: prepare it next time."],
     crew: ["You need a hand", "This job takes two: bring a volunteer (tap them, then the spot) or work together with your co-organizer."],
     warn: ["The yellow triangle", "A problem about to happen. Walk over it before it fires and you prevent it: worth more than fixing it."],

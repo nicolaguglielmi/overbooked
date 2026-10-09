@@ -435,7 +435,7 @@
   function layoutFor(view) {
     const plain = view && view.attract;
     const ui = plain ? 1 : R.ui, Z = plain ? 1 : R.zoom;
-    const hudH = HUD * ui, barH = DF.RADIO_H * ui;
+    const hudH = HUD * ui, barH = DF.RADIO_H * ui * (Z > 1 ? 1.5 : 1); // phones: room for the venue map
     return { ui, Z, hudH, barH, mapY: hudH, mapH: H - hudH - barH, compact: ui > 1 };
   }
   const toScreen = (wx, wy, L) => [(wx - R.cam.x) * L.Z + W / 2, (wy - R.cam.y) * L.Z + L.mapY + L.mapH / 2];
@@ -469,6 +469,7 @@
     if (!R.scale || !R.canvas.width) { resize(); if (!R.scale || !R.canvas.width) return; } // hidden or zero-sized
     const k = R.scale * R.dpr;
     const L = R.L = layoutFor(view);
+    R.lastActive = view.activeOrg;
     const kb = k * L.Z;
     if (s.venue && s.venue !== V.id) V.use(s.venue); // a guest's mirror, or the title's attract day
     if (!R.bg || R.bgEvent !== s.evId || R.bgLang !== DF.lang || R.bgK !== kb || R.bgVenue !== V.id) buildBackground(s, kb);
@@ -492,6 +493,7 @@
     drawRouterLeds(g, s);
     drawSeated(g, s, dt);
     drawRoomOverlays(g, s);
+    drawBoxZone(g, s, view);
     drawQueue(g, s);
     syncWalkers(s, dt);
     drawDynamicPeople(g, s, view);
@@ -501,7 +503,6 @@
     if (s.ev && s.ev.night) drawNight(g, s);
     if (s.fire) drawFire(g);
     if (s.panic && !view.attract) drawPanic(g);
-    drawToolTray(g, s, view);
     g.restore();
     drawEdges(g, s, L, view);
     drawRush(g, s, L, view);
@@ -513,6 +514,8 @@
     for (const n of ["rating", "goals", "energy", "ability"]) R.rects[n] = scaleRect(R.rects[n], 0, 0, L.ui);
     g.save(); g.translate(0, H - L.barH); g.scale(L.ui, L.ui); drawBar(g, s, view, dt, L); g.restore();
     R.chips = R.chips && R.chips.map((b) => scaleRect(b, 0, H - L.barH, L.ui));
+    R.trayScr = R.tray && R.tray.map((b) => scaleRect(b, 0, H - L.barH, L.ui));
+    R.miniScr = R.rects.mini = R.mini && scaleRect(R.mini, 0, H - L.barH, L.ui);
     for (const n of ["chat", "radio"]) R.rects[n] = scaleRect(R.rects[n], 0, H - L.barH, L.ui);
     if (R.flash > 0) { R.flash = Math.max(0, R.flash - dt * 2.5); g.fillStyle = "rgba(234,67,53," + (R.flash * 0.35) + ")"; g.fillRect(0, 0, W, H); }
     if (!view.attract && DF.Coach && DF.Coach.blocking()) drawSpot(g, DF.Coach.spot());
@@ -1084,23 +1087,27 @@
   }
 
   function drawBar(g, s, view, dt, L) {
-    const BW = W / L.ui, y0 = 0, mid = L.compact ? Math.round(BW * 0.47) : 470;
-    R.rects.chat = { x: mid + 2, y: y0 + 1, w: BW - mid - 4, h: DF.RADIO_H - 2 };
-    R.rects.radio = { x: 2, y: y0 + 1, w: mid - 4, h: DF.RADIO_H - 2 };
-    g.fillStyle = C.ink; g.fillRect(0, y0, BW, DF.RADIO_H);
-    g.fillStyle = "rgba(255,255,255,.07)"; g.fillRect(0, y0, BW, 1); g.fillRect(mid, y0 + 6, 1, DF.RADIO_H - 12);
-    // left: the radio (game alerts)
+    // BH: the bar's height in its own units (40, taller on phones); y0 centres the 40-unit rows in it
+    const BW = W / L.ui, BH = L.barH / L.ui, y0 = Math.round((BH - DF.RADIO_H) / 2), mid = L.compact ? Math.round(BW * 0.47) : 470;
+    R.rects.chat = { x: mid + 2, y: 1, w: BW - mid - 4, h: BH - 2 };
+    R.rects.radio = { x: 2, y: 1, w: mid - 4, h: BH - 2 };
+    g.fillStyle = C.ink; g.fillRect(0, 0, BW, BH);
+    g.fillStyle = "rgba(255,255,255,.07)"; g.fillRect(0, 0, BW, 1); g.fillRect(mid, 6, 1, BH - 12);
+    // phones: the whole venue at a glance, on the left
+    R.mini = null;
+    const lx = L.Z > 1 && !view.attract ? drawMiniMap(g, s, L, 6, 4, BH - 8) + 6 : 0;
+    // left: the GDG box while you stand at it, otherwise the radio (game alerts)
     for (const m of R.radio) m.t += dt;
     while (R.radio.length > 1 && R.radio[0].t > Math.max(2.2, R.radio[0].ttl * (R.radio.length > 2 ? 0.45 : 1))) R.radio.shift();
     const cur = R.radio[0];
-    if (cur) {
+    if (!drawBoxBar(g, s, view, lx + 8, mid - lx - 14, BH) && cur) {
       g.globalAlpha = cur.t < 0.2 ? cur.t / 0.2 : cur.t > cur.ttl ? Math.max(0.4, 1 - (cur.t - cur.ttl)) : 1;
-      g.fillStyle = RADIO_COL[cur.kind] || RADIO_COL.info; roundRect(g, 10, y0 + 9, 4, 22, 2); g.fill();
+      g.fillStyle = RADIO_COL[cur.kind] || RADIO_COL.info; roundRect(g, lx + 10, y0 + 9, 4, 22, 2); g.fill();
       g.fillStyle = "#eef2fb"; g.textAlign = "left"; g.textBaseline = "middle";
       g.font = "500 11.5px " + FONT;
-      const lines = wrap(g, cur.text, mid - 34, 2);
-      if (lines.length === 1) g.fillText(lines[0], 22, y0 + 20);
-      else { g.fillText(lines[0], 22, y0 + 13); g.fillText(lines[1], 22, y0 + 27); }
+      const lines = wrap(g, cur.text, mid - lx - 34, 2);
+      if (lines.length === 1) g.fillText(lines[0], lx + 22, y0 + 20);
+      else { g.fillText(lines[0], lx + 22, y0 + 13); g.fillText(lines[1], lx + 22, y0 + 27); }
       g.globalAlpha = 1;
     }
     // right: the staff chat
@@ -1111,8 +1118,8 @@
       const m = open[0];
       const left = Math.max(0, Math.min(1, (m.deadline - s.t) / (m.span || DF.CHAT_ACTS[m.tpl].deadline || 12)));
       const pulse = 0.5 + Math.sin(R.time * 8) * 0.5;
-      g.fillStyle = "rgba(255,210,63," + (0.12 + pulse * 0.1) + ")"; roundRect(g, x0 - 4, y0 + 3, w0 + 8, DF.RADIO_H - 6, 8); g.fill();
-      g.fillStyle = C.brand; g.fillRect(x0 - 4, y0 + DF.RADIO_H - 5, (w0 + 8) * left, 2);
+      g.fillStyle = "rgba(255,210,63," + (0.12 + pulse * 0.1) + ")"; roundRect(g, x0 - 4, 3, w0 + 8, BH - 6, 8); g.fill();
+      g.fillStyle = C.brand; g.fillRect(x0 - 4, BH - 5, (w0 + 8) * left, 2);
       emoji(g, DF.CHAT_FROM[DF.CHAT_ACTS[m.tpl].from] || "💬", x0 + 8, y0 + 13, 12);
       g.textAlign = "left"; g.textBaseline = "middle";
       g.font = "800 10px " + FONT; g.fillStyle = C.brand;
@@ -1124,7 +1131,7 @@
       R.chips = [];
       const cw = (w0 - 30) / 2;
       m.replies.forEach((label, i) => {
-        const cx = x0 + 4 + i * (cw + 6), cy = y0 + 21, ch = 15;
+        const cx = x0 + 4 + i * (cw + 6), cy = y0 + 21, ch = BH > DF.RADIO_H ? BH - y0 - 25 : 15; // phones: bigger to tap
         g.fillStyle = i === 0 ? C.brand : "rgba(255,255,255,.14)"; roundRect(g, cx, cy, cw, ch, 7); g.fill();
         g.fillStyle = i === 0 ? C.ink : "#fff"; g.font = "700 9.5px " + FONT; g.textAlign = "center";
         g.fillText(fit(g, (i === 0 ? "Q · " : "E · ") + label, cw - 8), cx + cw / 2, cy + ch / 2 + 0.5);
@@ -1167,31 +1174,88 @@
     return lines;
   }
 
-  // ------------------------------------------------------------ tool tray
-  function drawToolTray(g, s, view) {
+  // ------------------------------------------------------------ the GDG box
+  const atBoxOf = (o) => o && Math.hypot(o.x - ST.box.px, o.y - ST.box.py) <= DF.Sim.ACT_R + 8;
+  // a tool an open problem asks for, that's in the box and not in your hands
+  const toolNeeded = (s, o) => o && s.lo.tools && s.problems.some((p) => !p.done && P[p.type].tool && p.type !== "wifi" && s.lo.tools[P[p.type].tool] && !o.carry.includes(P[p.type].tool));
+
+  // where you pick tools up, always marked on the floor of the control room:
+  // yellow and pulsing when a problem needs a tool, green while you stand in it
+  function drawBoxZone(g, s, view) {
+    if (view.attract || !s.lo.tools) return;
+    const o = s.orgs.find((q) => q.id === view.activeOrg);
+    const B = ST.box, rad = DF.Sim.ACT_R + 8, inside = atBoxOf(o), need = !inside && toolNeeded(s, o);
+    const room = V.ROOMS[B.room], pulse = 0.5 + 0.5 * Math.sin(R.time * 5);
+    g.save();
+    if (room) { g.beginPath(); g.rect(room.x0 * T, room.y0 * T, (room.x1 - room.x0 + 1) * T, (room.y1 - room.y0 + 1) * T); g.clip(); }
+    g.beginPath(); g.arc(B.px, B.py, rad, 0, 7);
+    g.fillStyle = inside ? "rgba(52,168,83,.2)" : need ? "rgba(255,210,63," + (0.1 + pulse * 0.12) + ")" : "rgba(255,255,255,.05)"; g.fill();
+    g.setLineDash([6, 4]); g.lineWidth = 2;
+    g.strokeStyle = inside ? "rgba(52,168,83,.95)" : need ? "rgba(255,210,63," + (0.6 + pulse * 0.4) + ")" : "rgba(255,255,255,.45)"; g.stroke();
+    g.setLineDash([]);
+    g.restore();
+    // the label sits on the wall above, never on the people inside
+    const label = "📦 " + DF.t(inside ? "ui.hud.boxIn" : need ? "ui.hud.boxHere" : "ui.hud.box");
+    g.font = "800 9px " + FONT; g.textAlign = "center"; g.textBaseline = "middle";
+    const lw = g.measureText(label).width + 14, ly = room ? room.y0 * T - 9 : B.py - rad - 8;
+    g.fillStyle = inside ? C.green : need ? C.brand : "rgba(20,22,31,.85)";
+    roundRect(g, B.px - lw / 2, ly - 8, lw, 16, 8); g.fill();
+    g.fillStyle = inside ? "#fff" : need ? C.ink : "#eef2fb"; g.fillText(label, B.px, ly + 0.5);
+  }
+
+  // in the bar, always in the same place: the tools in the box, one tap each
+  function drawBoxBar(g, s, view, x0, w, BH) {
     R.tray = null;
     const o = s.orgs.find((q) => q.id === view.activeOrg);
-    if (!o || !s.lo.tools || Math.hypot(o.x - ST.box.px, o.y - ST.box.py) > DF.Sim.ACT_R + 10) return;
-    const tools = Object.keys(DF.TOOLS);
-    // in the right half of the control room: the hall stays visible and the
-    // organizer standing at the box (left half) is never covered
-    const bw = 50, bh = 38, gap = 4, cols = 2;
-    const x0 = (ST.box.x + 1.2) * T, y0 = (ST.box.y - 1.4) * T + 14;
+    if (view.attract || !s.lo.tools || !atBoxOf(o)) return false;
+    const tools = Object.keys(DF.TOOLS).filter((id) => s.lo.tools[id]);
+    g.textAlign = "left"; g.textBaseline = "middle";
+    g.font = "800 9px " + FONT; g.fillStyle = C.green;
+    g.fillText(fit(g, "📦 " + DF.t("ui.lo.box").toUpperCase() + " · " + DF.t(tools.length ? "ui.hud.boxTap" : "ui.hud.boxEmpty"), w), x0, 9);
+    if (!tools.length) return true;
     R.tray = [];
-    g.fillStyle = "rgba(20,22,31,.94)"; roundRect(g, x0 - 4, y0 - 16, cols * (bw + gap) + 4, Math.ceil(tools.length / cols) * (bh + gap) + 18, 10); g.fill();
-    g.fillStyle = "#aab4c8"; g.font = "700 8px " + FONT; g.textAlign = "left"; g.textBaseline = "middle";
-    g.fillText(fit(g, DF.t("ui.lo.box").toUpperCase(), cols * (bw + gap) - 6), x0 + 2, y0 - 7);
+    const gap = 5, y = 16, h = BH - y - 4, bw = Math.min(96, (w - gap * (tools.length - 1)) / tools.length);
     tools.forEach((id, i) => {
-      const x = x0 + (i % cols) * (bw + gap), y = y0 + Math.floor(i / cols) * (bh + gap);
-      const inBox = !!s.lo.tools[id], have = o.carry.includes(id);
-      g.globalAlpha = inBox ? 1 : 0.35;
-      g.fillStyle = have ? "#d7f5df" : "#ffffff"; roundRect(g, x, y, bw, bh, 8); g.fill();
-      emoji(g, DF.TOOLS[id].icon, x + bw / 2, y + 13, 14);
-      g.fillStyle = C.ink; g.font = "700 7.5px " + FONT; g.textAlign = "center"; g.textBaseline = "middle";
-      g.fillText(fit(g, inBox ? DF.t("tools." + id + ".name") : DF.t("ui.hud.missing"), bw - 4), x + bw / 2, y + 29);
-      g.globalAlpha = 1;
-      R.tray.push({ id, x, y, w: bw, h: bh, inBox });
+      const x = x0 + i * (bw + gap), have = o.carry.includes(id);
+      g.fillStyle = have ? "#d7f5df" : "#ffffff"; roundRect(g, x, y, bw, h, 7); g.fill();
+      if (have) { g.strokeStyle = C.green; g.lineWidth = 2; g.stroke(); }
+      const big = h > 26;
+      emoji(g, DF.TOOLS[id].icon, big ? x + bw / 2 : x + 11, big ? y + h * 0.36 : y + h / 2, big ? 15 : 12);
+      g.fillStyle = C.ink; g.font = "700 " + (big ? 8.5 : 8) + "px " + FONT; g.textAlign = big ? "center" : "left"; g.textBaseline = "middle";
+      g.fillText(fit(g, (have ? "✓ " : "") + DF.t("tools." + id + ".name"), big ? bw - 6 : bw - 24), big ? x + bw / 2 : x + 21, big ? y + h * 0.76 : y + h / 2 + 0.5);
+      R.tray.push({ id, x, y, w: bw, h, inBox: true });
     });
+    return true;
+  }
+
+  // ------------------------------------------------------------ venue map (phones)
+  // the whole venue in the bar: problems as dots, your organizer, the camera's frame;
+  // a tap on it works like a tap on the venue. Returns its width.
+  function drawMiniMap(g, s, L, x, y, h) {
+    const w = Math.round(h * W / MAPH), k = w / W;
+    g.save();
+    g.fillStyle = "#000"; roundRect(g, x - 1, y - 1, w + 2, h + 2, 5); g.fill();
+    roundRect(g, x, y, w, h, 4); g.clip();
+    if (R.bg && R.bgK) { g.globalAlpha = 0.92; g.drawImage(R.bg, 0, Math.round(HUD * R.bgK), Math.round(W * R.bgK), Math.round(MAPH * R.bgK), x, y, w, h); g.globalAlpha = 1; }
+    const hw = W / (2 * L.Z), hh = L.mapH / (2 * L.Z);
+    g.strokeStyle = "rgba(255,255,255,.95)"; g.lineWidth = 1.6; g.strokeRect(x + (R.cam.x - hw) * k, y + (R.cam.y - hh) * k, 2 * hw * k, 2 * hh * k);
+    const pulse = 0.5 + 0.5 * Math.sin(R.time * 6);
+    for (const pr of s.problems) {
+      if (pr.done) continue;
+      const [ax, ay] = DF.Sim.anchorOf(s, pr);
+      const urgent = !pr.warn && pr.remain / pr.dur < 0.35;
+      g.fillStyle = pr.warn > 0 ? C.yellow : urgent ? C.red : "#ffffff";
+      g.beginPath(); g.arc(x + ax * k, y + ay * k, urgent ? 4.2 + pulse * 1.5 : 4.2, 0, 7); g.fill();
+      g.strokeStyle = pr.rush ? C.brand : "rgba(20,22,31,.9)"; g.lineWidth = pr.rush ? 2 : 1.4; g.stroke();
+    }
+    for (const o of s.orgs) {
+      g.fillStyle = o.id === (R.lastActive || "") ? C.blue : "#9ec1ff";
+      g.beginPath(); g.arc(x + o.x * k, y + o.y * k, 3.4, 0, 7); g.fill();
+      g.strokeStyle = "#fff"; g.lineWidth = 1.4; g.stroke();
+    }
+    g.restore();
+    R.mini = { x, y, w, h };
+    return w;
   }
 
   // ------------------------------------------------------------ picking
@@ -1203,9 +1267,17 @@
     for (const b of R.hudBtns || []) if (inRect(b, lx, ly, pad)) return { kind: "hud", ref: b.id };
     for (const b of R.chips || []) if (inRect(b, lx, ly, 4 + pad)) return { kind: "reply", ref: b.id, i: b.i };
     for (const e of R.edges || []) if (Math.hypot(lx - e.x, ly - e.y) < e.r) return { kind: "problem", ref: e.pr, edge: true };
+    for (const b of R.trayScr || []) if (inRect(b, lx, ly, pad)) return { kind: "tool", ref: b.id, inBox: b.inBox };
+    const M = R.miniScr;
+    if (M && inRect(M, lx, ly, pad)) {
+      // the venue map: the nearest problem around the tap, or that spot of the floor
+      const mx = DF.clamp((lx - M.x) / M.w, 0, 1) * W, my = DF.clamp((ly - M.y) / M.h, 0, 1) * MAPH;
+      let near = null, nd = 70;
+      for (const pr of s.problems) { if (pr.done) continue; const [ax, ay] = DF.Sim.anchorOf(s, pr); const d = Math.hypot(ax - mx, ay - my); if (d < nd) { nd = d; near = pr; } }
+      return near ? { kind: "problem", ref: near, x: mx, y: my, mini: true } : { kind: "floor", x: mx, y: my, mini: true };
+    }
     if (ly < L.mapY || ly > L.mapY + L.mapH) return { kind: "none" };
     const [wx, y] = toWorld(lx, ly, L);
-    for (const b of R.tray || []) if (inRect(b, wx, y, pad / L.Z)) return { kind: "tool", ref: b.id, inBox: b.inBox };
     const K = R.touchK;
     let best = null, bd = 1e9;
     // the nearest thing wins; problems a little more, they're what you came for

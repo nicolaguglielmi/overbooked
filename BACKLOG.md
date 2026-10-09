@@ -1,8 +1,16 @@
 # Backlog
 
-Versione: **0.8.1**. Changelog e cose da fare.
+Versione: **0.8.2**. Changelog e cose da fare.
 
 ## Fatto
+
+- **0.8.2 — La scatola e il telefono.** La Scatola del GDG ha una zona fissa
+  sul pavimento della Regia (cerchio tratteggiato: gialla quando un problema
+  chiede un attrezzo, verde quando ci sei dentro) e gli attrezzi compaiono
+  nella barra in basso, sempre nello stesso posto: niente più riquadro sopra
+  i personaggi. Sul telefono la barra è più alta e mostra tutta la sede:
+  puntini per i problemi, la cornice di quello che stai guardando, un tocco
+  per andarci; risposte della chat più grandi da toccare.
 
 - **0.8.1 — Per chi organizza eventi tech.** Crediti al solo autore
   (Nicola Guglielmi, GDE, organizer GDG) e link «Trova un GDG vicino a te»;

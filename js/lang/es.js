@@ -456,19 +456,23 @@ DF.L.es = {
       "points": "PUNTOS",
       "combo": "COMBO ×{n}",
       "chat": "CHAT DEL STAFF",
-      "forced": "descanso forzoso",
-      "box": "CAJA GDG · toca para coger",
+      "forced": "pausa forzada",
+      "box": "CAJA GDG",
+      "boxHere": "CAJA · COGE AQUÍ",
+      "boxIn": "EN LA CAJA ↓",
+      "boxTap": "toca una herramienta para cogerla",
+      "boxEmpty": "está vacía: se llena en la Cuenta atrás",
       "missing": "falta",
       "panic": "¡CAOS!",
       "rush": "HORA PUNTA",
-      "open": "Puertas abiertas",
-      "next": "Luego: {t}",
+      "open": "Apertura de puertas",
+      "next": "Siguiente: {t}",
       "end": "Cierre",
       "closed": "CERRADO",
       "stage": "ESCENARIO",
       "late": "{m}' tarde",
-      "starting": "Empieza ya…",
-      "noSignal": "NO SIGNAL",
+      "starting": "Empezando…",
+      "noSignal": "SIN SEÑAL",
       "unread": "+{n}",
       "reply": "Responder"
     },
@@ -1973,11 +1977,11 @@ DF.L.es = {
     ],
     "you": [
       "Este eres tú",
-      "Toca el mapa para moverte (teclado: WASD o flechas). Si tocas un problema, vas y lo arreglas tú."
+      "Toca un punto del mapa para ir allí (teclado: WASD o flechas). Toca un problema e irás a resolverlo por tu cuenta."
     ],
     "checkin": [
       "Check-in",
-      "La gente llega aquí. Si hay cola, toca el mostrador: te quedas ahí y das paso."
+      "La gente llega aquí. Si hay cola, toca el mostrador: te quedas allí y das paso a los asistentes."
     ],
     "goals": [
       "Objetivos de hoy",
@@ -1985,31 +1989,35 @@ DF.L.es = {
     ],
     "rating": [
       "La valoración",
-      "Sube si todo va sobre ruedas y baja si empeora un problema o cae una charla. Cuenta al final."
+      "Sube cuando todo va sobre ruedas y baja si un problema empeora o se pierde una charla. Cuenta al final."
     ],
     "problem": [
       "¡Un problema!",
-      "El anillo es el tiempo antes de que empeore. Toca el icono: vas y lo arreglas. El arco verde es el progreso."
+      "El anillo es el tiempo antes de que empeore. Toca el icono: vas allí y lo arreglas. El arco verde es el progreso."
     ],
     "tool": [
-      "Falta una herramienta",
-      "{tool}: está en la caja del GDG, en Control (abajo a la izquierda). Toca el problema y la coges de paso: es más rápido."
+      "Necesitas una herramienta",
+      "{tool}: está en la caja del GDG, en realización. Toca el problema y la recogerás de camino. A mano: entra en el círculo discontinuo y elígela en la barra inferior."
+    ],
+    "map": [
+      "Todo el recinto",
+      "Aquí abajo ves todo el recinto: los puntos son problemas, el marco blanco es lo que estás viendo. Toca un punto y tu organizador irá allí."
     ],
     "noTool": [
-      "Herramienta ausente",
-      "Nadie metió {tool} en la caja durante el Countdown. Puedes improvisar, pero tardarás más: prepárala la próxima vez."
+      "Falta una herramienta",
+      "Nadie metió {tool} en la caja durante la cuenta atrás. Puedes improvisar, pero lleva más tiempo: prepárala la próxima vez."
     ],
     "crew": [
-      "Necesitas ayuda",
-      "Esto es cosa de dos: trae a un voluntario (tócalo y luego toca el sitio) o colabora con tu coorganizador."
+      "Necesitas una mano",
+      "Hacen falta dos: trae a un voluntario (tócalo a él, luego el punto) o colabora con tu coorganizador."
     ],
     "warn": [
       "El triángulo amarillo",
-      "Un problema a punto de estallar. Písalo antes de que salte y lo evitarás: vale más prevenir que curar."
+      "Un problema a punto de ocurrir. Pasa por encima antes de que estalle y lo evitarás: vale más que arreglarlo."
     ],
     "chat": [
       "El chat del staff",
-      "No es solo para leer: cada respuesta cambia algo en la sala (un speaker que no se pierde, un voluntario en el check-in, más café). Responde con Q o E, o toca, antes de que se agote la barra: si pasas, decide el azar."
+      "No es solo para leer: cada respuesta cambia algo en el recinto (un speaker que no se pierde, un voluntario en check-in, más café). Responde con Q o E, o toca la pantalla, antes de que se acabe la barra: si lo ignoras, decide el azar."
     ],
     "murphy": [
       "¡Murphy!",
@@ -2017,83 +2025,83 @@ DF.L.es = {
     ],
     "panic": [
       "¡CAOS!",
-      "Cuatro marrones a la vez. Respira: primero el del anillo más vacío, luego el resto. Los voluntarios ayudan."
+      "Cuatro problemas a la vez. Respira: primero el del anillo más vacío, luego el resto. Los voluntarios ayudan."
     ],
     "firedrill": [
       "Simulacro de incendio",
-      "Todos fuera unos segundos y charlas pausadas. Toca esperar (y pedir las fechas de simulacro a la sala la próxima vez)."
+      "Todo el mundo fuera de las salas unos segundos y las charlas se pausan. Toca esperar (y pedir el calendario de simulacros la próxima vez)."
     ],
     "goalOk": [
       "¡Objetivo cumplido!",
-      "{goal}: la estrella es tuya. Tienes los demás arriba."
+      "{goal}: esa estrella es tuya. Tienes los demás objetivos arriba."
     ],
     "goalFail": [
-      "Objetivo fallido",
-      "{goal}: hoy no ha podido ser. Aún puedes rascar las otras estrellas."
+      "Objetivo no superado",
+      "{goal}: hoy no ha podido ser. Aún puedes conseguir las demás estrellas."
     ],
     "burnout": [
       "Burnout",
-      "Te has quedado sin energía y has petado. Tómate un café antes de llegar a cero: la barra está arriba a la derecha."
+      "Te quedaste sin energía y tuviste que parar. Tómate un café antes de llegar a cero: la barra está arriba a la derecha."
     ],
     "energy": [
-      "Baja energía",
-      "Organizar cansa. Pásate por el café (centro del lobby) o por la sala de speakers para recargar antes del burnout."
+      "Poca energía",
+      "Organizar agota. Pásate por el café (en el centro del hall) o por la sala de speakers para recargar antes del burnout."
     ],
     "vols": [
       "Voluntarios",
-      "En su puesto atienden a la gente: café, dudas, bienvenida, y la valoración sube. Toca a un voluntario y luego un problema o un puesto (círculos verdes) para moverlo."
+      "En su puesto atienden a la gente: café, dudas, bienvenida... y la valoración sube. Toca a un voluntario y luego un problema o un puesto (círculos verdes) para moverlo."
     ],
     "rush": [
       "Hora punta",
-      "Varios problemas a la vez, marcados con ⚡. Arréglalos todos antes de que uno empeore y caiga la puntuación. Repartíos el trabajo: manda al co-org y a los voluntarios."
+      "Varios marrones a la vez, marcados con ⚡. Arréglalos todos antes de que uno empeore y la valoración se disparará. Repartíos: manda al co-org y a los voluntarios."
     ],
     "ability": [
       "Tu habilidad: {name}",
-      "El botón amarillo arriba (F en el teclado): {what} Luego se recarga, así que úsala cuando cuente."
+      "El botón amarillo de arriba (F en el teclado): {what} Luego se recarga, así que úsala cuando de verdad importe."
     ],
     "mate": [
-      "Tu co-organizador",
-      "Va por libre, pero acepta órdenes: tócalo, luego toca un problema y va volando. Tú ocúpate de otra cosa."
+      "Tu co-org",
+      "Trabaja por libre, pero acepta órdenes: tócalo, luego toca un problema y va volando. Tú ocúpate de otra cosa."
     ],
     "waiting": [
-      "La charla no empieza",
-      "Hacen falta el speaker en el escenario y un proyector operativo. Cada minuto de espera resta valoración; a los 26 min, se cancela."
+      "La charla no puede empezar",
+      "Hace falta el speaker en el escenario y un proyector que funcione. Cada minuto de espera cuesta valoración; a los 26 minutos se cancela la charla."
     ],
     "night": [
       "De madrugada",
-      "De 1 a 6 de la mañana la energía vuela. Haced turnos para el café o id a la sala de descanso, si la preparasteis."
+      "Entre la 1 y las 6 h la energía baja más rápido. Haceos turnos para el café o id a la sala de descanso, si habéis preparado una."
     ],
     "locked": [
       "Puerta cerrada",
-      "Nadie avisó a conserjería: la gente espera fuera hasta que abran. Para la próxima, la tarjeta de llaves en el Countdown."
+      "Nadie avisó a conserjería: la gente espera fuera hasta que abran. La próxima vez, la tarjeta de llaves en la cuenta atrás."
     ],
     "ev:meetup": [
       "Meetup de jueves",
-      "Una sala, dos charlas, cuarenta pizzas. El nivel más chill: prueba los controles a tu ritmo."
+      "Una sala, dos charlas y cuarenta pizzas. El nivel más tranquilo: prueba los controles a tu ritmo."
     ],
     "ev:studyjam": [
       "El Study Jam",
-      "Codelab en el Lab: regletas, Wi-Fi y créditos de Cloud son tu día a día. Dos salas abiertas."
+      "Codelab en el Lab: regletas, Wi-Fi y créditos de Cloud son el pan de cada día. Dos salas abiertas."
     ],
     "ev:wtm": [
       "Women Techmakers",
-      "Hoy la acogida lo es todo: peques despistados, permiso para fotos, accesibilidad. No dejamos a nadie atrás."
+      "Hoy lo importante es acoger bien: peques correteando, consentimientos de fotos, acceso accesible. Que nadie se quede atrás."
     ],
     "ev:ioext": [
       "Google I/O Extended",
-      "Keynote en directo, sala a reventar y llega una persona VIP. La noche del streaming."
+      "Keynote en directo, sala a reventar y VIP al caer. La noche de los livestreams."
     ],
     "ev:hack": [
-      "Hackatón nocturna",
-      "De 18:00 a 10:00. Equipos atascados (🧩) esperando mentores, pizza a medianoche y demos a las 8:00."
+      "La hackathon nocturna",
+      "De 18:00 a 10:00. Equipos atascados (🧩) esperan mentor, pizza a medianoche y demos a las 8."
     ],
     "ev:devfest": [
       "El DevFest",
-      "Tres salas, quince sesiones y Murphy. Todo lo aprendido, a la vez."
+      "Tres salas, quince charlas y Murphy. Todo lo aprendido, a la vez."
     ],
     "tPrepWeeks": [
-      "El Countdown",
-      "Faltan pocas semanas: cada ronda es parte de la preparación. Tus decisiones marcan cómo empieza el gran día."
+      "La cuenta atrás",
+      "Quedan pocas semanas: cada ronda es parte de los preparativos. Tus decisiones marcan el inicio del día."
     ],
     "tPrepPips": [
       "Tus tardes libres",
@@ -2101,70 +2109,70 @@ DF.L.es = {
     ],
     "tPrepOpt": [
       "Elige",
-      "Toca una opción para encargarte de ella. Las etiquetas verdes y rojas te muestran qué cambia."
+      "Toca una opción para ocuparte de ella. Las etiquetas verdes y rojas muestran qué cambia."
     ],
     "tPrepIgnore": [
-      "Si pasas del tema",
-      "Lo que no elijas ocurrirá igualmente: esto es lo que pasa. A veces pasar es la decisión correcta."
+      "Si nadie se encarga",
+      "Lo que no elijas pasará igual: esto ocurrirá. A veces, ignorarlo es la mejor opción."
     ],
     "tPrepMeters": [
       "Las cuentas del chapter",
-      "Presupuesto, RSVPs, comunidad, partners y energía: mira cómo oscilan."
+      "Presupuesto, RSVPs, comunidad, patrocinadores y energía: mira cómo cambian."
     ],
     "tPrepClose": [
-      "Cierra la ronda",
-      "Cuando decidas, cierra: verás cómo ha ido la cosa y qué has aprendido."
+      "Cerrar la ronda",
+      "Cuando decidas, cierra: verás cómo fue y qué has aprendido."
     ],
     "tLoStats": [
       "La víspera",
-      "Esto es lo que tienes para el evento: aforo previsto, voluntarios, energía y presupuesto."
+      "Con esto llegas al evento: asistentes previstos, voluntarios, energía y presupuesto."
     ],
     "tLoGoals": [
       "Los objetivos",
-      "Tres objetivos, tres estrellas. Los verás arriba durante el evento."
+      "Tres objetivos, tres estrellas. También los verás arriba durante el evento."
     ],
     "tLoGo": [
-      "¡Abrimos puertas!",
-      "Cuando estés listo, abre las puertas. El juego se pausará para explicarte las novedades."
+      "¡Se abren puertas!",
+      "Cuando estés a punto, abre las puertas. El juego se pausará para explicarte las novedades."
     ],
     "tSeasonEv": [
       "La temporada",
-      "Seis eventos, de meetup a DevFest. Cada uno tiene tres objetivos: una estrella desbloquea el siguiente."
+      "Seis eventos: del meetup al DevFest. Cada uno tiene tres objetivos; con una estrella desbloqueas el siguiente."
     ],
     "tSeasonKit": [
       "El kit del chapter",
-      "Las estrellas se canjean aquí por mejoras útiles en todos los eventos."
+      "Las estrellas se gastan aquí, en mejoras útiles para todos los eventos."
     ],
     "p": {
-      "queue": "Cola en la entrada. Toca el mostrador de check-in y quédate hasta despejarla, o manda a un voluntario.",
-      "stampante": "Se atascó la impresora de acreditaciones: el check-in se ralentiza. Ve al mostrador y arréglala.",
-      "speaker": "El ponente se ha perdido en el vestíbulo. Ve a por él: te seguirá. Llévalo al escenario (círculo verde).",
-      "hdmi": "El portátil del ponente no conecta. Con adaptadores de la caja es un segundo; si no, toca improvisar.",
-      "mic": "El micro se queda sin pilas. Coge repuestos de la caja y ve al escenario.",
-      "wifi": "Se cayó el Wi-Fi: reinicia el rack en control o activa la zona Wi-Fi en el Lab.",
+      "queue": "Cola en la entrada. Toca el mostrador de check-in y quédate hasta que baje, o manda a un voluntario.",
+      "stampante": "La impresora de acreditaciones se ha atascado y frena el check-in. Ve al mostrador y arréglala.",
+      "speaker": "El speaker se ha perdido en el vestíbulo. Ve a por él: te seguirá. Llévalo al escenario (círculo verde).",
+      "hdmi": "El portátil del speaker no conecta. Con los adaptadores de la caja tardas nada; si no, toca improvisar.",
+      "mic": "El micro se queda sin pilas. Coge repuestos de la caja y cámbialas en el escenario.",
+      "wifi": "Se cayó la Wi-Fi: reinicia el rack en control o activa la zona Wi-Fi en el Lab.",
       "prese": "Faltan enchufes en el Lab. Las regletas están en la caja.",
-      "coffee": "Se acaba el café. Rellena las cafeteras en el puesto de café.",
-      "pizza": "El repartidor está en la entrada con las pizzas. Cógelas antes de que se enfríen.",
-      "overflow": "Sala llena y gente fuera. Ve a la puerta: mándalos a ver el streaming en el vestíbulo.",
-      "sponsor": "El patrocinador quiere hablar contigo ya. Ve a su stand.",
-      "perso": "Alguien no encuentra su sala. Respóndele rápido y se irá feliz.",
-      "coc": "Aviso del CoC. Va antes que nada: ve ya, escucha y protege.",
-      "cancel": "El ponente no viene. En el escenario puedes improvisar (lightning talks, Q&A): actúa allí.",
-      "tavoli": "Hay que preparar el Lab para el próximo taller: hace falta una persona más.",
-      "overrun": "El ponente se pasa de tiempo. Al escenario: saca el cartel de «5 minutos».",
-      "vip": "Una visita VIP en la entrada. Dale la bienvenida antes de que se sienta ignorada.",
-      "dog": "¡Un perro en la sala! Acércate: te seguirá. Llévalo a la salida.",
-      "press": "La prensa pide una entrevista: buena oportunidad para ganar puntos.",
-      "flame": "Tabuladores contra espacios: segunda parte. Sepáralos antes de que vaya a más.",
-      "blackout": "Corte de luz en una sala: reengancha los plomos en la sala de control.",
-      "quota": "Créditos Cloud agotados en el codelab. Si tienes en la caja, se arregla al instante.",
-      "stream": "El streaming no tiene audio: arregla el sonido en la mesa de control.",
+      "coffee": "Se acaba el café. Rellena las cafeteras en la barra.",
+      "pizza": "El repartidor está en la puerta con las pizzas. Cógelas antes de que se enfríen.",
+      "overflow": "Sala llena y gente fuera. En la puerta: mándalos a ver el stream al vestíbulo.",
+      "sponsor": "El patrocinador quiere hablar contigo ya. Ve al stand.",
+      "perso": "Alguien no encuentra su sala. Responde rápido y se irá feliz.",
+      "coc": "Aviso del Código de Conducta. Prioridad absoluta: ve ya, escucha y protege.",
+      "cancel": "Falla un speaker. En el escenario puedes improvisar (lightning talks, Q&A): actúa allí.",
+      "tavoli": "Hay que preparar el Lab para el siguiente taller: hace falta una persona más.",
+      "overrun": "El speaker se está pasando de tiempo. En el escenario: saca el cartel de «5 minutos».",
+      "vip": "Visita VIP en la entrada. Ve a recibirla antes de que se sienta ignorada.",
+      "dog": "¡Un perro en la sala! Acércate: te seguirá. Luego guíalo hasta la salida.",
+      "press": "La prensa pide una entrevista: buena oportunidad, suma valoración.",
+      "flame": "Tabuladores contra espacios: la secuela. Sepáralos antes de que vaya a más.",
+      "blackout": "Apagón en una sala: rearma el cuadro eléctrico en la sala de control.",
+      "quota": "Créditos de Cloud agotados en el codelab. Si tienes en la caja, se arregla al instante.",
+      "stream": "El stream no tiene audio: ajústalo en la mesa de control.",
       "badge": "Sin acreditaciones en el check-in. Usa las de la caja o escríbelas a mano.",
-      "kid": "Un niño se ha despistado de la zona infantil. Ve con calma y acompáñalo de vuelta.",
-      "access": "Ascensor averiado: acompaña al asistente al aula magna por la ruta accesible.",
-      "foto": "Hacen fotos a quien no quiere salir. Ve a hablar con el fotógrafo: el consentimiento importa.",
-      "mentor": "Equipo bloqueado (build en rojo, API caída). Un mentor los desbloquea: Tech irá el doble de rápido.",
-      "noise": "Los vecinos se quejan del ruido. Ve a la entrada a calmar los ánimos."
+      "kid": "Un peque se ha despistado de la zona infantil. Ve con calma y acompáñalo de vuelta.",
+      "access": "Ascensor roto: acompaña al asistente al aula magna por el itinerario accesible.",
+      "foto": "Sacan fotos a quien no quiere salir. Ve a hablar con quien fotografía: el consentimiento importa.",
+      "mentor": "Equipo bloqueado (build en rojo, la API no responde). Un mentor ayuda: la parte Tech irá el doble de rápido.",
+      "noise": "El vecindario se queja del ruido. Ve a la entrada a calmar los ánimos."
     }
   },
   "perks": {

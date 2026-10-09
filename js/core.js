@@ -6,7 +6,7 @@
 "use strict";
 var DF = (typeof globalThis !== "undefined" ? globalThis : window).DF = (typeof DF !== "undefined" && DF) || {};
 
-DF.VERSION = "0.8.1";
+DF.VERSION = "0.8.2";
 
 // who made it (shown in "The project", on the title and in the shared texts)
 DF.CREDITS = { author: "Nicola Guglielmi", title: "GDE", url: "https://gdg.community.dev/" }; // url: find a GDG near you

@@ -130,7 +130,12 @@ URL flags: `?day=solo|duo&event=meetup|studyjam|ioext|devfest`, `?dev`
 - **Phones**: `js/render.js` draws the venue through a camera (`R.zoom`,
   following the local organizers) and the HUD/bar at `R.ui` scale; picking and
   coach spots go through it (map spots are venue coordinates with
-  `map: true`). `?mobile` forces the phone layout on a desktop.
+  `map: true`). `?mobile` forces the phone layout on a desktop. On phones the
+  bar is taller and holds the venue map (`drawMiniMap`, `R.miniScr`): a tap
+  there picks the nearest problem or that floor spot.
+- **The GDG box**: a fixed dashed zone on the control room floor
+  (`drawBoxZone`) marks where tools are picked up; the tools appear in the
+  bar's left half (`drawBoxBar`, `R.trayScr`), never on the map.
 - **Gestures**: TAP to go (tap a problem = go and fix it), HOLD to work by
   hand, keyboard for two players, Q/E to answer the staff chat. The tutorial
   and the pace (`ev.pace`, relaxed mode) exist so players have time to read.

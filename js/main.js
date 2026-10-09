@@ -132,6 +132,7 @@
     const C = DF.Coach;
     C.tip("welcome", null, { icon: "🎟️" });
     C.tip("you", orgSpot(s), { icon: "🧑‍💻" });
+    if (DF.Render.R.zoom > 1) C.tip("map", "rect:mini", { icon: "🗺️" }); // phones: the venue map in the bar
     if (G.botOrgs.length) C.tip("mate", mateSpot(s), { icon: "👉" });
     const me = s.orgs.find((q) => q.id === DF.Input.activeOrg);
     if (me) { const [name, what] = DF.t("abilities." + me.role); C.tip("ability", "rect:ability", { icon: DF.Render.ABILITY_ICON[me.role], vars: { name, what } }); }
