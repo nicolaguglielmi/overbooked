@@ -105,7 +105,7 @@
   // the weekly challenge: the shared configuration, and every input recorded for the server's replay
   function startWeekly(run) {
     const su = DF.Weekly.setup(run.weekly, run.players[0].role);
-    G.run = Object.assign({}, run, { event: su.event, players: su.players, loadout: su.loadout, seed: su.seed, ai: null, soldout: false, mode: "solo" });
+    G.run = Object.assign({}, run, { event: su.event, players: su.players, loadout: su.loadout, seed: su.seed, ai: null, soldout: false, mode: "solo", cast: DF.castFor(su.seed) });
     G.cfg = DF.Weekly.config(su);
     DF.Render.R.banter = DF.t("banter");
     G.rec = { week: su.week, role: su.role, log: [], step: 0, key: "" };
@@ -229,7 +229,7 @@
     if (G.phase !== "day" && G.phase !== "ending") {
       if (document.hidden) return;
       attractStep(dt);
-      DF.Render.draw(G.attract, { dt, activeOrg: null, attract: true });
+      DF.Render.draw(G.attract, { dt, activeOrg: null, attract: true, cast: DF.UI.U.cast });
       return;
     }
     if (G.online === "guest") { guestFrame(dt); return; }
@@ -240,7 +240,7 @@
       while (G.acc >= STEP && n < 6) { tick(STEP); G.acc -= STEP; n++; }
       if (n === 6) G.acc = 0;
     } else { dt = 0; G.acc = 0; }
-    DF.Render.draw(G.sim, { dt, activeOrg: DF.Input.activeOrg, locals: G.localOrgs, focus: DF.Coach.blocking() ? DF.Coach.mapSpot() : null });
+    DF.Render.draw(G.sim, { dt, activeOrg: DF.Input.activeOrg, locals: G.localOrgs, cast: G.run && G.run.cast, focus: DF.Coach.blocking() ? DF.Coach.mapSpot() : null });
     if (DF.Coach.blocking()) DF.Coach.place();
   }
 
@@ -306,7 +306,7 @@
     DF.Online.guestInput(inputs[me]);
     DF.Net.smooth(m, dt);
     handleEvents(m);
-    DF.Render.draw(m, { dt, activeOrg: me, locals: [me] });
+    DF.Render.draw(m, { dt, activeOrg: me, locals: [me], cast: (DF.Online.O.run || G.run || {}).cast });
   }
 
   G.startGuestDay = function (run) {
@@ -675,7 +675,7 @@
         tick(n) { for (let i = 0; i < (n || 1); i++) tick(STEP); return G.sim && G.sim.orgs.map((o) => o.name + "@" + Math.round(o.x) + "," + Math.round(o.y) + (o.target ? ":" + o.target.kind : "")); },
         attract(sec) {
           for (let i = 0; i < (sec || 1) * 60; i++) attractStep(STEP);
-          for (let k = 0; k < 20; k++) DF.Render.draw(G.attract, { dt: 1 / 30, activeOrg: null, attract: true });
+          for (let k = 0; k < 20; k++) DF.Render.draw(G.attract, { dt: 1 / 30, activeOrg: null, attract: true, cast: DF.UI.U.cast });
           return DF.fmtClock(G.attract.clock);
         },
         advance(sec, profile) {

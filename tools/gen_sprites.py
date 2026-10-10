@@ -47,6 +47,11 @@ SPRITES = {
     "org_tech": f"an AV technician organizer in a bright red (#EA4335) t-shirt with a black headset around the neck, cargo trousers, a tool belt with coiled cables and an HDMI adapter, {LANYARD}, determined grin, curly hair",
     "org_host": f"a welcome-desk organizer in a sunny yellow (#FBBC04) polo shirt, holding a clipboard and a stack of name badges, {LANYARD}, cheerful, hair in a bun",
     "org_care": f"a speaker-care organizer in a green (#34A853) shirt with rolled sleeves, holding a tablet showing a schedule, {LANYARD}, calm reassuring smile, glasses, long hair",
+    # the same four roles with the other look: in each game two of the roles go to women and two to men, at random (DF.castFor)
+    "org_lead_b": f"an event organizer, a woman, in a royal blue (#4285F4) zip hoodie, dark jeans, white sneakers, {LANYARD}, holding a black walkie-talkie raised in one hand, confident smile, shoulder-length dark hair",
+    "org_tech_b": f"an AV technician organizer, a woman, in a bright red (#EA4335) t-shirt with a black headset around the neck, cargo trousers, a tool belt with coiled cables and an HDMI adapter, {LANYARD}, determined grin, braided hair",
+    "org_host_b": f"a welcome-desk organizer, a man, in a sunny yellow (#FBBC04) polo shirt, holding a clipboard and a stack of name badges, {LANYARD}, cheerful, short beard",
+    "org_care_b": f"a speaker-care organizer, a man, in a green (#34A853) shirt with rolled sleeves, holding a tablet showing a schedule, {LANYARD}, calm reassuring smile, glasses, short curly hair",
     "volunteer": f"a young event volunteer in a green t-shirt and a green cap, {LANYARD}, waving with one hand, enthusiastic",
     # speakers
     "speaker_a": "a tech conference speaker in a navy blazer over a white t-shirt, carrying a silver laptop under one arm, nervous smile, slicked hair, a red lanyard",

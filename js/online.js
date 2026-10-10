@@ -81,7 +81,8 @@
     if (!el) return;
     const list = Object.values(O.players);
     const t = DF.t;
-    const spr = (r) => (DF.SPRITE_DATA && DF.SPRITE_DATA[DF.ROLES[r].sprite]) || "assets/sprites/" + DF.ROLES[r].sprite + "." + (window.DF_SPRITE_EXT || "png");
+    const look = (r) => ((DF.UI && DF.UI.U.cast) || {})[r] || DF.ROLES[r].sprite;
+    const spr = (r) => (DF.SPRITE_DATA && DF.SPRITE_DATA[look(r)]) || "assets/sprites/" + look(r) + "." + (window.DF_SPRITE_EXT || "png");
     el.innerHTML = `
       <div class="sheet narrow">
         <div class="lanyard" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -191,7 +192,7 @@
     const lo = DF.Prep.loadout(O.prep);
     const players = members().map((p) => Object.assign({}, p, { ctrl: p.id === O.me ? "human" : "remote" }));
     if (lo.coLead) players.push({ id: "co", role: "tech", name: "Co-org", ctrl: "bot" });
-    O.run = { mode: "online", event: O.event, players, chapter: O.chapter, city: DF.UI.U.setup.city, loadout: lo, seed: O.seed, phase: "loadout", ai: O.aiKit, prep: 1, venue: DF.venueFor(O.event, DF.UI.U.setup.venue) };
+    O.run = { mode: "online", event: O.event, players, chapter: O.chapter, city: DF.UI.U.setup.city, loadout: lo, seed: O.seed, phase: "loadout", ai: O.aiKit, prep: 1, cast: DF.UI.U.cast, venue: DF.venueFor(O.event, DF.UI.U.setup.venue) };
     O.t.publish("run", O.run);
     DF.UI.renderLoadout(O.run, { host: true });
     DF.UI.show("loadout");

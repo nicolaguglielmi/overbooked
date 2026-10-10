@@ -43,7 +43,7 @@
   };
 
   // ------------------------------------------------------------- sprites
-  const SPRITES = ["org_lead", "org_tech", "org_host", "org_care", "volunteer", "speaker_a", "speaker_b", "speaker_c", "att_1", "att_2", "att_3", "att_4", "att_5", "att_6", "att_7", "att_8", "murphy", "dog", "vip", "rider", "press", "sponsor", "kid", "hacker", "judge", "neighbor"];
+  const SPRITES = ["org_lead", "org_tech", "org_host", "org_care", "org_lead_b", "org_tech_b", "org_host_b", "org_care_b", "volunteer", "speaker_a", "speaker_b", "speaker_c", "att_1", "att_2", "att_3", "att_4", "att_5", "att_6", "att_7", "att_8", "murphy", "dog", "vip", "rider", "press", "sponsor", "kid", "hacker", "judge", "neighbor"];
   const IMG = {};
   function loadSprites() {
     for (const n of SPRITES) {
@@ -789,7 +789,10 @@
     const picked = R.select && R.select.kind === "mate" && R.select.id === o.id;
     if (picked) { g.strokeStyle = C.brand; g.lineWidth = 3; g.beginPath(); g.ellipse(o.x, o.y + 7, 17 + Math.sin(R.time * 8) * 2, 7.5, 0, 0, 7); g.stroke(); }
     const bob = o.moving ? -Math.abs(Math.sin(R.time * 12 + o.x * 0.1)) * 2 : 0;
-    sprite(g, role.sprite, o.x, o.y + 6, 36, o.facing < 0, bob, o.stun > 0 ? 0.6 : null);
+    // who plays the role this game (DF.castFor): the run's team, or one drawn from the day's seed
+    if (!R.dayCast || R.castSeed !== s.seed) { R.castSeed = s.seed; R.dayCast = DF.castFor(s.seed); }
+    const look = (view.cast && view.cast[o.role]) || R.dayCast[o.role] || role.sprite;
+    sprite(g, look, o.x, o.y + 6, 36, o.facing < 0, bob, o.stun > 0 ? 0.6 : null);
     if (o.order || picked) { g.fillStyle = C.brand; g.beginPath(); g.arc(o.x - 15, o.y - 30, 8, 0, 7); g.fill(); emoji(g, "👉", o.x - 15, o.y - 29.5, 10); }
     if (o.stun > 0) emoji(g, "😵‍💫", o.x, o.y - 38, 14);
     nameTag(g, o.x, o.y + 18 + (o.tagDy || 0), o.name || DF.t("roles." + o.role + ".name"), role.color);

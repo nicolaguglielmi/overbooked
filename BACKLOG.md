@@ -1,8 +1,16 @@
 # Backlog
 
-Versione: **0.8.2**. Changelog e cose da fare.
+Versione: **0.8.3**. Changelog e cose da fare.
 
 ## Fatto
+
+- **0.8.3 — Nessun ruolo ha un genere.** Prima lead e tech erano sempre
+  uomini, accoglienza e speaker care sempre donne (feedback di una giocatrice).
+  Ora ogni ruolo ha due personaggi, una donna e un uomo con gli stessi vestiti
+  e attrezzi, e ogni partita mette a caso due donne e due uomini nei quattro
+  ruoli (`DF.castFor`); titolo, scelta del ruolo, giornata e stanze online
+  mostrano la stessa squadra. Testi italiani resi neutri dove dicevano «il
+  lead», «il Tech», «il co-org».
 
 - **0.8.2 — La scatola e il telefono.** La Scatola del GDG ha una zona fissa
   sul pavimento della Regia (cerchio tratteggiato: gialla quando un problema

@@ -12,6 +12,22 @@ DF.ROLES = {
   care: { color: "#34A853", tools: 1, sprite: "org_care", fast: ["speaker", "cancel", "hdmi", "mic", "overrun", "quota", "access", "mentor"] },
 };
 
+// Who plays each role: every role has a woman and a man (same clothes, same
+// props); each game puts two women and two men in the four roles, shuffled
+// from a seed, so no role belongs to one gender.
+DF.ROLE_LOOKS = {
+  lead: { m: "org_lead", f: "org_lead_b" }, tech: { m: "org_tech", f: "org_tech_b" },
+  host: { f: "org_host", m: "org_host_b" }, care: { f: "org_care", m: "org_care_b" },
+};
+DF.castFor = function (seed) {
+  const pairs = [["lead", "tech"], ["lead", "host"], ["lead", "care"], ["tech", "host"], ["tech", "care"], ["host", "care"]];
+  let h = (Number(seed) >>> 0) || 1;
+  h = Math.imul(h ^ (h >>> 16), 0x45d9f3b) >>> 0; h = (h ^ (h >>> 16)) >>> 0;
+  const women = pairs[h % pairs.length], cast = {};
+  for (const r of Object.keys(DF.ROLE_LOOKS)) cast[r] = DF.ROLE_LOOKS[r][women.includes(r) ? "f" : "m"];
+  return cast;
+};
+
 // Things in the chapter's box.
 DF.TOOLS = {
   adattatori: { icon: "🔌" },

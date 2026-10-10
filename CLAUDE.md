@@ -125,6 +125,11 @@ URL flags: `?day=solo|duo&event=meetup|studyjam|ioext|devfest`, `?dev`
   `functions/game/` (`node tools/build.mjs` refreshes them; the gate checks
   they match). Anything that changes the sim changes the replay: keep the
   gate's replay check green.
+- **No role has a gender**: every role has a woman and a man sprite
+  (`DF.ROLE_LOOKS`); `DF.castFor(seed)` puts two women and two men in the four
+  roles, shuffled. The UI draws a session team (`U.cast`) and passes it in the
+  run (`run.cast`, also to online guests); the renderer falls back to the
+  day's seed. Keep role texts gender-neutral in Italian ("chi fa da lead").
 - **Role abilities** (`useAbility` in sim): one per role with a cooldown; bots
   use them with a probability (`profile.ability`) so the curve stays honest.
 - **Phones**: `js/render.js` draws the venue through a camera (`R.zoom`,

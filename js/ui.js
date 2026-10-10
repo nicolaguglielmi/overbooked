@@ -20,6 +20,9 @@
     prep: null, activeMember: null, view: "cards", lastResults: null, feel: null,
     aiKit: null, aiCard: {}, current: "title", notifTimer: null,
   };
+  // this session's team (DF.castFor): two women and two men across the roles, shuffled
+  U.cast = DF.castFor((Math.random() * 4294967296) >>> 0);
+  const castSprite = (r, cast) => ((cast || U.cast) || {})[r] || DF.ROLES[r].sprite;
   const progress = () => DF.storage.get("ovb_progress", {});
   // the chapter's kit: upgrades paid with the season's stars, swappable any time
   const KIT = "ovb_kit";
@@ -89,7 +92,7 @@
           <div class="tag">${esc(t("brand.tagline"))}</div>
           <div class="sub">${esc(t("brand.sub"))}</div>
           <div class="perf"></div>
-          <div class="cast" aria-hidden="true">${["org_lead", "org_tech", "org_host", "org_care"].map((n) => `<img src="${spriteSrc(n)}" alt="">`).join("")}<img class="murphy" src="${spriteSrc("murphy")}" alt=""></div>
+          <div class="cast" aria-hidden="true">${Object.keys(DF.ROLES).map((r) => `<img src="${spriteSrc(castSprite(r))}" alt="">`).join("")}<img class="murphy" src="${spriteSrc("murphy")}" alt=""></div>
         </div>
         <nav class="menu" aria-label="Menu">
           ${LANYARD}
@@ -197,7 +200,7 @@
     const transport = DF.Net && DF.Net.pickTransport();
     const modes = ["solo", "duo", "online"];
     const ev = DF.EVENTS[st.event];
-    const roleCards = (p, i) => Object.keys(DF.ROLES).map((r) => `<button class="rolecard" data-role="${i}:${r}" aria-pressed="${p.role === r}" style="--rc:${DF.ROLES[r].color}"><img src="${spriteSrc(DF.ROLES[r].sprite)}" alt=""><b>${esc(t("roles." + r + ".name"))}</b></button>`).join("");
+    const roleCards = (p, i) => Object.keys(DF.ROLES).map((r) => `<button class="rolecard" data-role="${i}:${r}" aria-pressed="${p.role === r}" style="--rc:${DF.ROLES[r].color}"><img src="${spriteSrc(castSprite(r))}" alt=""><b>${esc(t("roles." + r + ".name"))}</b></button>`).join("");
     $("#screen-setup").innerHTML = `
       <div class="sheet">
         ${LANYARD}
@@ -297,7 +300,7 @@
     const players = mode === "duo"
       ? [{ id: "p1", role: p0.role || "lead", name: p0.name }, { id: "p2", role: (U.setup.players[1] && U.setup.players[1].role) || "tech", name: (U.setup.players[1] && U.setup.players[1].name) || "" }]
       : [{ id: "p1", role: p0.role || "lead", name: p0.name }, { id: "p2", role: p0.role === "tech" ? "lead" : "tech", name: "Co-org", ctrl: "bot" }];
-    return { mode, event, players, chapter: U.setup.chapter, city: U.setup.city, ai: U.aiKit, soldout: !!U.setup.soldout && mode !== "online", venue: DF.venueFor(event, U.setup.venue), loadout: DF.Weekly.standardLoadout(event) };
+    return { mode, event, players, chapter: U.setup.chapter, city: U.setup.city, ai: U.aiKit, soldout: !!U.setup.soldout && mode !== "online", venue: DF.venueFor(event, U.setup.venue), loadout: DF.Weekly.standardLoadout(event), cast: U.cast };
   }
 
   // ------------------------------------------------------------- countdown
@@ -402,7 +405,7 @@
       const role = t("roles." + m.role + ".name");
       const name = m.name || (m.ai ? "Co-org" : role);
       return `<button class="member" data-m="${m.id}" aria-pressed="${U.activeMember === m.id}" ${mine ? "" : "disabled"}>
-        <img src="${spriteSrc(DF.ROLES[m.role].sprite)}" alt="">
+        <img src="${spriteSrc(castSprite(m.role))}" alt="">
         <span><span style="display:block;font:800 13px/1.1 var(--font)">${esc(name)} <small>${name === role ? "" : esc(role)}${m.ready ? " · ✓" : ""}</small></span>
         <span class="pips">${pips.join("")}</span></span></button>`;
     }).join("");
@@ -529,7 +532,7 @@
     const lo = DF.Prep.loadout(st);
     const players = U.setup.players.map((p) => ({ id: p.id, role: p.role, name: p.name }));
     if (lo.coLead && players.length === 1) players.push({ id: "p2", role: players[0].role === "tech" ? "lead" : "tech", name: "Co-org", ctrl: "bot" });
-    return { mode: U.setup.mode, event: st.event, players, chapter: U.setup.chapter, city: U.setup.city, loadout: lo, seed: U.seed, ai: U.aiKit, prep: 1, venue: DF.venueFor(st.event, U.setup.venue), soldout: !!U.setup.soldout && soldoutOpen(U.setup) && U.setup.mode !== "online" };
+    return { mode: U.setup.mode, event: st.event, players, chapter: U.setup.chapter, city: U.setup.city, loadout: lo, seed: U.seed, ai: U.aiKit, prep: 1, cast: U.cast, venue: DF.venueFor(st.event, U.setup.venue), soldout: !!U.setup.soldout && soldoutOpen(U.setup) && U.setup.mode !== "online" };
   }
 
   function renderLoadout(run, opts) {
@@ -553,7 +556,7 @@
           <div class="stat"><b>${DF.fmtDec(1 + 4 * lo.satStart / 100)}</b><span>${esc(t("ui.lo.sat"))}</span></div>
         </div>
         <h3>${esc(t("ui.lo.staff"))}</h3>
-        <div class="loadout">${run.players.map((p) => `<div class="lo-item"><img src="${spriteSrc(DF.ROLES[p.role].sprite)}" alt=""><span>${p.name ? esc(p.name) + " · " : ""}${esc(t("roles." + p.role + ".name"))}${p.ctrl === "bot" ? " 🤖" : p.ctrl === "remote" ? " 🌐" : ""}</span></div>`).join("")}${lo.volunteers ? `<div class="lo-item"><img src="${spriteSrc("volunteer")}" alt=""><span>×${lo.volunteers} ${esc(t("ui.lo.vols"))}</span></div>` : ""}</div>
+        <div class="loadout">${run.players.map((p) => `<div class="lo-item"><img src="${spriteSrc(castSprite(p.role, run.cast))}" alt=""><span>${p.name ? esc(p.name) + " · " : ""}${esc(t("roles." + p.role + ".name"))}${p.ctrl === "bot" ? " 🤖" : p.ctrl === "remote" ? " 🌐" : ""}</span></div>`).join("")}${lo.volunteers ? `<div class="lo-item"><img src="${spriteSrc("volunteer")}" alt=""><span>×${lo.volunteers} ${esc(t("ui.lo.vols"))}</span></div>` : ""}</div>
         <h3>${esc(t("ui.lo.box"))}</h3>
         <div class="loadout">${Object.keys(DF.TOOLS).map((x) => `<div class="lo-item ${lo.tools[x] ? "" : "off"}"><span class="ico">${DF.TOOLS[x].icon}</span><span>${esc(t("tools." + x + ".name"))}</span></div>`).join("")}</div>
         <h3>${esc(t("ui.lo.prep"))}</h3>
@@ -1096,7 +1099,7 @@
         <div class="eyebrow">📅 ${esc(t("ui.weekly.eyebrow", { week: w.slice(5) }))}</div>
         <h2>${ev.icon} ${esc(t("events." + su.event + ".name"))}</h2>
         <p>${esc(t("ui.weekly.rules"))}</p>
-        <div class="roles">${Object.keys(DF.ROLES).map((r) => `<button class="rolecard" data-wrole="${r}" aria-pressed="${role === r}" style="--rc:${DF.ROLES[r].color}"><img src="${spriteSrc(DF.ROLES[r].sprite)}" alt=""><b>${esc(t("roles." + r + ".name"))}</b></button>`).join("")}</div>
+        <div class="roles">${Object.keys(DF.ROLES).map((r) => `<button class="rolecard" data-wrole="${r}" aria-pressed="${role === r}" style="--rc:${DF.ROLES[r].color}"><img src="${spriteSrc(castSprite(r, DF.castFor(su.seed)))}" alt=""><b>${esc(t("roles." + r + ".name"))}</b></button>`).join("")}</div>
         <p>${esc(t("roles." + role + ".blurb"))} ${DF.Render.ABILITY_ICON[role]} ${esc(t("abilities." + role)[0])}.</p>
         <div class="row" style="align-items:flex-end">
           <div class="field grow"><label for="wk-chapter">${esc(t("ui.weekly.for"))}</label><input id="wk-chapter" maxlength="40" value="${esc(U.setup.chapter)}" placeholder="${esc(t("ui.setup.chapterPh"))}"></div>
