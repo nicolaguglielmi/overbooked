@@ -14,6 +14,8 @@ import { join } from "node:path";
 const OUT = process.argv[2] || "docs/comunicazione/img";
 const LANGS = process.argv.slice(3).length ? process.argv.slice(3) : ["it", "en"];
 const BASE = "http://localhost:8765/";
+// the team on screen (DF.castFor): 4 = lead and speaker care women, tech and welcome men
+const CAST = Number(process.env.CAST || 4);
 const PORT = 9333, W = 1400, H = 788, DPR = 2;
 mkdirSync(OUT, { recursive: true });
 
@@ -34,7 +36,7 @@ let id = 0; const wait = new Map();
 ws.addEventListener("message", (m) => { const d = JSON.parse(m.data); if (d.id && wait.has(d.id)) { wait.get(d.id)(d); wait.delete(d.id); } });
 const send = (method, params) => new Promise((res, rej) => { const i = ++id; wait.set(i, (d) => (d.error ? rej(new Error(method + ": " + d.error.message)) : res(d.result))); ws.send(JSON.stringify({ id: i, method, params })); });
 const js = async (expr) => { const r = await send("Runtime.evaluate", { expression: expr, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) throw new Error(expr.slice(0, 60) + ": " + r.exceptionDetails.exception?.description); return r.result.value; };
-const go = async (url) => { await send("Page.navigate", { url }); await sleep(2500); };
+const go = async (url) => { await send("Page.navigate", { url }); for (let i = 0; i < 40; i++) { await sleep(250); try { if (await js(`typeof DF === "object" && !!DF.UI`)) break; } catch (e) {} } await sleep(800); };
 const shot = async (name) => { const r = await send("Page.captureScreenshot", { format: "png" }); writeFileSync(`${OUT}/${name}.png`, Buffer.from(r.data, "base64")); console.log("✓", name); };
 
 await send("Page.enable");
@@ -49,11 +51,12 @@ for (const lang of LANGS) {
 
   // 1. the title, over the attract mode
   await go(BASE + "?dev&nostats");
-  await js(`__df.attract(45)`); await sleep(800);
+  await js(`DF.UI.U.cast = DF.castFor(${CAST}); DF.UI.show("title"); __df.attract(45)`); await sleep(800);
   await shot(`${lang}-1-titolo`);
 
   // 2. the day: DevFest, played by a novice bot until it gets busy
   await go(BASE + "?dev&nostats&day=solo&event=devfest");
+  await js(`DF.UI.U.cast = DF.castFor(${CAST}); DF.Game.run.cast = DF.UI.U.cast`);
   let best = null;
   for (let k = 0; k < 120; k++) {
     const r = await js(`__df.advance(2, "novizio")`);
